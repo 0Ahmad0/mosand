@@ -75,6 +75,29 @@
   "data_of_birth": "تاريخ الميلاد",
   "gender": "الجنس",
   "male_g": "ذكر",
-  "female_g": "أنثى"
+  "female_g": "أنثى",
+  "notification": "الإشعارات",
+  "welcome": "أهلا وسهلا",
+  "welcome_back": "مرحبا بعودتك",
+  "telephone_consultation": "الاستشارات الهاتفية",
+  "telephone_consultation_steps": "تقدم الاستشارات هاتفيا ، الرجاء اتباع الخطوات التالية",
+  "specialty_lawyer": "تخصص المحامي",
+  "select_specialty_lawyer": "اختر تخصص المحامي الذي تود استشارته",
+  "subject_consultation": "موضوع الاستشارة",
+  "select_subject_consultation": "موضوع الاستشارة التي تود طلبها",
+  "no_notification": "لا توجد إشعارات حتى الآن",
+  "personal_status":"الأحوال الشخصية",
+  "commercial_cases":"القضايا التجارية",
+  "labor_disputes":"الخلافات العمالية",
+  "cybercrime":"الجرائم المعلوماتية",
+  "real_estate_cases":"القضايا العقارية",
+  "inheritance_cases":"قضايا التركات",
+  "criminal_cases":"القضايا الجنائية",
+  "medical_errors":"الاخطاء الطبية",
+  "zakat_and_tax":"الزكاة والضريبية",
+  "administrative_issues":"القضايا الادارية",
+  "insurance_cases":"القضايا التأمينية",
+  "funding_issues":"القضايا التمويلية"
+
 
 }

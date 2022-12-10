@@ -75,8 +75,29 @@
   "data_of_birth": "Data of birth",
   "gender": "Gender",
   "male_g": "Male",
-  "female_g": "Female"
-
+  "female_g": "Female",
+  "notification": "Notification",
+  "welcome": "Welcome",
+  "welcome_back": "Welcome back",
+  "telephone_consultation": "Telephone Consultation",
+  "telephone_consultation_steps": "Consultations are provided by phone, please follow the steps below",
+  "specialty_lawyer": "Specialty of the lawyer",
+  "select_specialty_lawyer": "Choose the specialty of the lawyer you want to consult",
+  "subject_consultation": "Subject of consultation",
+  "select_subject_consultation": "Subject of the consultation you wish to request",
+  "no_notification": "No notification yet",
+  "personal_status":"Personal Status",
+  "commercial_cases":"Commercial Cases",
+  "labor_disputes":"Labor disputes",
+  "cybercrime":"Cybercrime",
+  "real_estate_cases":"Real Estate Cases",
+  "inheritance_cases":"Inheritance Cases",
+  "criminal_cases":"Criminal cases",
+  "medical_errors":"Medical errors",
+  "zakat_and_tax":"Zakat and Tax",
+  "administrative_issues":"Administrative issues",
+  "insurance_cases":"Insurance Cases",
+  "funding_issues":"Funding Issues"
 
 
 }

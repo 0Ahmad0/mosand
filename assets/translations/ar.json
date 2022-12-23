@@ -97,7 +97,15 @@
   "zakat_and_tax":"الزكاة والضريبية",
   "administrative_issues":"القضايا الادارية",
   "insurance_cases":"القضايا التأمينية",
-  "funding_issues":"القضايا التمويلية"
-
-
+  "funding_issues":"القضايا التمويلية",
+  "my_dates": "المواعيد الخاصة بي",
+  "in_progress": "قيد الانتظار",
+  "upcoming": "القادمة",
+  "complete": "المكتملة",
+  "no_records": "لا توجد سجلات",
+  "telephone_consultation_schedule": "جدول الاستشارة الهاتفية",
+  "please_choose_time_lawyer_to_contact_you": "الرجاء اختيار الوقت المناسب لك ، لكي يتصل بك المحامي",
+  "morning": "صباحا",
+  "evening": "مساء",
+  "no_appointments_available_for_the_selected_date": "لا توجد مواعيد متاحة للتاريخ المحدد"
 }

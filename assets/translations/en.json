@@ -97,7 +97,15 @@
   "zakat_and_tax":"Zakat and Tax",
   "administrative_issues":"Administrative issues",
   "insurance_cases":"Insurance Cases",
-  "funding_issues":"Funding Issues"
-
-
+  "funding_issues":"Funding Issues",
+  "my_dates": "My dates",
+  "in_progress": "In progress",
+  "upcoming": "Upcoming",
+  "complete": "Complete",
+  "no_records": "No records found",
+  "telephone_consultation_schedule": "Telephone Consultation Schedule",
+  "please_choose_time_lawyer_to_contact_you": "Please choose the time that suits you, for the lawyer to contact you",
+  "morning": "Morning",
+  "evening": "Evening",
+  "no_appointments_available_for_the_selected_date": "No appointments available for the selected date"
 }

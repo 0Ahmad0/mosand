@@ -63,8 +63,8 @@
   "search": "Search here...",
   "location": "Location",
   "price": "Price",
-  "from": "From",
-  "to": "To",
+  "from": "From Hour",
+  "to": "To Hour",
   "add_office": "Add office",
   "type_here": "Type here",
   "lawyer": "Lawyer",
@@ -107,5 +107,13 @@
   "please_choose_time_lawyer_to_contact_you": "Please choose the time that suits you, for the lawyer to contact you",
   "morning": "Morning",
   "evening": "Evening",
-  "no_appointments_available_for_the_selected_date": "No appointments available for the selected date"
+  "no_appointments_available_for_the_selected_date": "No appointments available for the selected date",
+  "all_lawyers": "All lawyers",
+  "please_select_one_lawyers": "Please select one lawyer",
+  "this_item_will_be_deleted": "This item will be deleted",
+  "are_you_sure": "Are you sure?",
+  "ok": "Ok",
+  "cancel": "Cancel",
+  "add_date": "Add date",
+  "select_lawyer": "Choose the lawyer you would like to consult"
 }

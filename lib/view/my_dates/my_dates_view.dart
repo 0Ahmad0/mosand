@@ -1,14 +1,15 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mosand/translations/locale_keys.g.dart';
+import 'package:mosand/view/my_dates/widgets/build_item_dates.dart';
 import 'package:mosand/view/resourse/color_manager.dart';
 import 'package:mosand/view/resourse/const_manager.dart';
 import 'package:mosand/view/resourse/style_manager.dart';
 import 'package:sizer/sizer.dart';
 
 class MyDatesView extends StatelessWidget {
-  const MyDatesView({Key? key}) : super(key: key);
-
+  DateTime selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -40,15 +41,68 @@ class MyDatesView extends StatelessWidget {
             Expanded(
               child: TabBarView(
                 children: [
-                  Container(
-                    color: Colors.redAccent,
+                ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (_,index)=>BuildItemDates(
+                      dateName: "dateName",
+                      lawyerName: "lawyerName",
+                      date: "date",
+                      onTap: (){},
+                      icon: Icons.delete_sweep,
+                      iconType: Icons.hourglass_top,
+                      onTapIcon: (){
+                        AwesomeDialog(
+                            context: context,
+                          dialogType: DialogType.error,
+                          title: tr(LocaleKeys.this_item_will_be_deleted),
+                          desc: tr(LocaleKeys.are_you_sure),
+                          btnOkOnPress: (){},
+                          btnCancelOnPress: (){},
+                          btnOkText: tr(LocaleKeys.ok),
+                          btnCancelText: tr(LocaleKeys.cancel),
+                        ).show();
+                      }
                   ),
-                  Container(
-                    color: Colors.blueAccent,
+                ),
+                ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (_,index)=>BuildItemDates(
+                      dateName: "dateName",
+                      lawyerName: "lawyerName",
+                      date: "date",
+                      onTap: (){
+                   
+                      },
+                      icon: Icons.edit_calendar,
+                      iconType: Icons.next_plan,
+                      colorIcon: ColorManager.primaryColor,
+                      onTapIcon: () async {
+                        final t = await showDatePicker(
+                          locale: context.locale,
+                          context: context,
+                          initialDate: selectedDate,
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime(2050),
+                        );
+                        if(t !=null && t!=selectedDate){
+                          print("====>${t}<====");
+                        }
+                      }
                   ),
-                  Container(
-                    color: Colors.pinkAccent,
-                  )
+                ),
+                ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (_,index)=>BuildItemDates(
+                      dateName: "dateName",
+                      lawyerName: "lawyerName",
+                      date: "date",
+                      onTap: (){},
+                      icon: null,
+                      iconType: Icons.check_circle_rounded,
+                      colorIcon2: ColorManager.success,
+                      onTapIcon: null
+                  ),
+                ),
                 ],
               ),
             ),

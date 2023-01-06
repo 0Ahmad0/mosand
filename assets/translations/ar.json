@@ -63,8 +63,8 @@
   "search": "ابحث هن...",
   "location": "الموقع",
   "price": "العمولة",
-  "from": "تحويل من",
-  "to": "تحويل إلى",
+  "from": "من الساعة",
+  "to": "إلى الساعة",
   "add_office": "إضافة مكتب تحويل",
   "type_here": "اكتب هنا",
   "lawyer": "محامي",
@@ -107,5 +107,13 @@
   "please_choose_time_lawyer_to_contact_you": "الرجاء اختيار الوقت المناسب لك ، لكي يتصل بك المحامي",
   "morning": "صباحا",
   "evening": "مساء",
-  "no_appointments_available_for_the_selected_date": "لا توجد مواعيد متاحة للتاريخ المحدد"
+  "no_appointments_available_for_the_selected_date": "لا توجد مواعيد متاحة للتاريخ المحدد",
+  "all_lawyers": "جميع المحامين",
+  "please_select_one_lawyers": "الرجاء اختيار أحد المحامين",
+  "this_item_will_be_deleted": "سيتم حذف هذا العنصر",
+  "are_you_sure": "هل أنت متاكد؟",
+  "ok": "نعم",
+  "cancel": "إلغاء",
+  "add_date": "إضافة موعد استشارة",
+  "select_lawyer": "اختر المحامي الذي تود استشارته"
 }

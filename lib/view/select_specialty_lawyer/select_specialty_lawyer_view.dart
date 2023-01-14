@@ -69,7 +69,7 @@ class _SelectSpecialtyLawyerItemState extends State<SelectSpecialtyLawyerItem> {
             },
             child: Column(
               children: [
-                Expanded(child: Image.asset(AssetsManager.logoIMG)),
+                Expanded(child:  Image.asset('assets/images/${widget.index}.png')),
                 Text(specialtyLawyer[widget.index]),
               ],
             ),

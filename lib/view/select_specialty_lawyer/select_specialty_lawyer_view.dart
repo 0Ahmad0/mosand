@@ -7,6 +7,7 @@ import 'package:mosand/view/manager/widgets/ShadowContainer.dart';
 import 'package:mosand/view/resourse/assets_manager.dart';
 import 'package:mosand/view/resourse/color_manager.dart';
 import 'package:mosand/view/resourse/const_manager.dart';
+import 'package:mosand/view/resourse/style_manager.dart';
 import 'package:mosand/view/resourse/values_manager.dart';
 
 class SelectSpecialtyLawyerView extends StatelessWidget {
@@ -94,7 +95,12 @@ class _SelectSpecialtyLawyerItemState extends State<SelectSpecialtyLawyerItem> {
               alignment: Alignment.center,
               width: double.infinity,
               height: double.infinity,
-              child: Flexible(child: Text(specialtyDescription[widget.index],overflow: TextOverflow.ellipsis,)),
+              child: SingleChildScrollView(
+                child: Text(specialtyDescription[widget.index],style: getRegularStyle(
+                  color:Theme.of(context).cardColor,
+
+                ),),
+              ),
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.circular(AppSize.s8)

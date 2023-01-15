@@ -118,5 +118,17 @@ abstract class  LocaleKeys {
   static const cancel = 'cancel';
   static const add_date = 'add_date';
   static const select_lawyer = 'select_lawyer';
+  static const personal_status_d = 'personal_status_d';
+  static const commercial_issues_d = 'commercial_issues_d';
+  static const labor_disputes_d = 'labor_disputes_d';
+  static const information_crimes_d = 'information_crimes_d';
+  static const real_estate_cases_d = 'real_estate_cases_d';
+  static const inheritance_issues_d = 'inheritance_issues_d';
+  static const criminal_cases_d = 'criminal_cases_d';
+  static const medical_errors_d = 'medical_errors_d';
+  static const zakat_tax_d = 'zakat_tax_d';
+  static const administrative_cases_d = 'administrative_cases_d';
+  static const insurance_cases_d = 'insurance_cases_d';
+  static const financing_cases_d = 'financing_cases_d';
 
 }

@@ -58,6 +58,18 @@ class _SelectSpecialtyLawyerItemState extends State<SelectSpecialtyLawyerItem> {
       tr(LocaleKeys.zakat_and_tax),
       tr(LocaleKeys.administrative_issues),
     ];
+    List<String> specialtyDescription = [
+      tr(LocaleKeys.personal_status_d),
+      tr(LocaleKeys.commercial_issues_d),
+      tr(LocaleKeys.labor_disputes_d),
+      tr(LocaleKeys.information_crimes_d),
+      tr(LocaleKeys.real_estate_cases_d),
+      tr(LocaleKeys.inheritance_issues_d),
+      tr(LocaleKeys.criminal_cases_d),
+      tr(LocaleKeys.medical_errors_d),
+      tr(LocaleKeys.zakat_tax_d),
+      tr(LocaleKeys.administrative_cases_d),
+    ];
     return ShadowContainer(
       padding: isShow?0.0:8.0,
       margin: 6.0,
@@ -68,9 +80,10 @@ class _SelectSpecialtyLawyerItemState extends State<SelectSpecialtyLawyerItem> {
               Get.back();
             },
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Expanded(child:  Image.asset('assets/images/${widget.index}.png')),
-                Text(specialtyLawyer[widget.index]),
+                Expanded(child:  Image.asset('assets/images/${widget.index+1}.png')),
+                Text(specialtyLawyer[widget.index],textAlign: TextAlign.center,),
               ],
             ),
           ),
@@ -81,7 +94,7 @@ class _SelectSpecialtyLawyerItemState extends State<SelectSpecialtyLawyerItem> {
               alignment: Alignment.center,
               width: double.infinity,
               height: double.infinity,
-              child: Flexible(child: Text("HelloHelloHelloHelloHelloHelloHelloHelloHelloHello")),
+              child: Flexible(child: Text(specialtyDescription[widget.index],overflow: TextOverflow.ellipsis,)),
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.circular(AppSize.s8)

@@ -131,7 +131,19 @@ class CodegenLoader extends AssetLoader{
   "ok": "نعم",
   "cancel": "إلغاء",
   "add_date": "إضافة موعد استشارة",
-  "select_lawyer": "اختر المحامي الذي تود استشارته"
+  "select_lawyer": "اختر المحامي الذي تود استشارته",
+  "personal_status_d": " الاستشارات المتعلقة بقضايا الاسر مثل : النفقة ، الحضانة ، الطلاق ",
+  "commercial_issues_d": " الاستشارات المتعلقة بجميع القضايا التجارية وفروعها ",
+  "labor_disputes_d": "الاستشارات المتعلقة بالعامل وصاحب العمل وحقوق كلا منهما ",
+  "information_crimes_d": "الاستشارات المتعلقة بالقضايا التي تتم عن طريق الأجهزة الالكترونية",
+  "real_estate_cases_d": "الاستشارات المتعلقة بجميع مايخص العقار وحقوق البائع والمشتري ",
+  "inheritance_issues_d": "الاستشارات المتعلقة بالورثة ومالهم من خلال قسمة التركة ",
+  "criminal_cases_d": "الاستشارات المتعلقة بالجرائم وحقوق المتهم والضحية ",
+  "medical_errors_d": "الاستشارات المتعلقة بحقوق المريض وحقوق كل من يعمل في  منشأة طبية  ",
+  "zakat_tax_d": "الاستشارات المتعلقة بجميع النشاطات الخاضعة لنظام الزكاة والضريبة ",
+  "administrative_cases_d": "وتشمع جميع أنواع الدعاوي الإدارية التي ترفع من جهة الإدارة أو ضدها ",
+  "insurance_cases_d": "تشمل الدعاوي التي تكون بشركات التأمين والمستفيدين ",
+  "financing_cases_d": "وتشمل الدعاوي التي تخص شركات التمويل والبنوك"
 };
 static const Map<String,dynamic> en = {
   "waitr": "Waitr",
@@ -250,7 +262,19 @@ static const Map<String,dynamic> en = {
   "ok": "Ok",
   "cancel": "Cancel",
   "add_date": "Add date",
-  "select_lawyer": "Choose the lawyer you would like to consult"
+  "select_lawyer": "Choose the lawyer you would like to consult",
+  "personal_status_d": "Consultations related to family issues such as: alimony, custody, and divorce",
+  "commercial_issues_d": "Consultations related to all commercial issues and their branches",
+  "labor_disputes_d": "Consultations related to the worker and the employer and the rights of each of them",
+  "information_crimes_d": "Consultations related to cases that are conducted through electronic devices",
+  "real_estate_cases_d": "Consultations related to all matters related to real estate and the rights of the seller and buyer",
+  "inheritance_issues_d": "Consultations related to the heirs and their money through the division of the estate",
+  "criminal_cases_d": "Consultations related to crimes and the rights of the accused and the victim",
+  "medical_errors_d": "Consultations related to the rights of the patient and the rights of everyone working in a medical facility",
+  "zakat_tax_d": "Consultations related to all activities subject to the system of zakat and tax",
+  "administrative_cases_d": "It includes all types of administrative lawsuits filed by or against the administration",
+  "insurance_cases_d": "These include lawsuits filed by insurance companies and beneficiaries",
+  "financing_cases_d": "These include lawsuits related to financing companies and banks"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

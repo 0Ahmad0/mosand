@@ -58,6 +58,8 @@ dependencies:
   get_storage:
   cloud_firestore:
   provider: ^6.0.5
+  loading_animation_widget: ^1.2.0+4
+
 flutter_icons:
   android: true
   ios: true

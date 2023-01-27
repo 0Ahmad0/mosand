@@ -1,4 +1,6 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mosand/controller/auth_controller.dart';
+import 'package:mosand/model/utils/consts_manager.dart';
 
 import '../../../translations/locale_keys.g.dart';
 import '../../resourse/font_manager.dart';
@@ -21,6 +23,9 @@ import '../../manager/widgets/button_app.dart';
 import '../../resourse/color_manager.dart';
 
 class SignupViewBody extends StatelessWidget {
+  SignupViewBody({required this.authController,required this.typeUser});
+  final AuthController authController;
+  final String typeUser;
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
@@ -44,12 +49,13 @@ class SignupViewBody extends StatelessWidget {
       },
       context: context,
       initialDate: _selectedDate != null ? _selectedDate : DateTime.now(),
-      firstDate: DateTime.now(),
+      firstDate: DateTime(1950),
       lastDate: DateTime(2040),
     );
 
     if (newSelectedDate != null) {
       _selectedDate = newSelectedDate;
+
       dateOfBirthController
         ..text = DateFormat.yMd().format(_selectedDate)
         ..selection = TextSelection.fromPosition(TextPosition(
@@ -182,9 +188,11 @@ class SignupViewBody extends StatelessWidget {
                               ),
                             ],
                           ),
+                          if(typeUser.contains(AppConstants.collectionLawyer))
                           const SizedBox(
                             height: AppSize.s10,
                           ),
+                          if(typeUser.contains(AppConstants.collectionLawyer))
                           FadeInLeftBig(
                             child: TextFiledApp(
                               controller: idLawyerController,
@@ -198,6 +206,7 @@ class SignupViewBody extends StatelessWidget {
                               },
                             ),
                           ),
+
                           const SizedBox(
                             height: AppSize.s10,
                           ),
@@ -239,9 +248,17 @@ class SignupViewBody extends StatelessWidget {
                           ),
                           FadeInLeftBig(
                             child: ButtonApp(
-                                text: tr(LocaleKeys.signup),
-                                onPressed: () {
-                                  if (formKey.currentState!.validate()) {}
+                                text: tr(LocaleKeys.gender),
+                                onPressed: () async {
+                                  if (formKey.currentState!.validate()) {
+                                   await authController.signUp(
+                                       fullName: nameController.text, gender: genderController.text,
+                                        dateBirth: DateFormat.yMd().parse(dateOfBirthController.text),
+                                        email: emailController.text, password: passwordController.text,
+                                        phoneNumber: phoneController.text, photoUrl: AppConstants.collectionUser,
+                                        typeUser: typeUser);
+                                   FocusManager.instance.primaryFocus!.unfocus();
+                                  }
                                 }),
                           ),
                           const SizedBox(
@@ -250,7 +267,7 @@ class SignupViewBody extends StatelessWidget {
                           FadeInLeftBig(
                             child: TextButton(
                                 onPressed: () {
-                                  Get.off(LoginView());
+                                  Get.off(LoginView(typeUser: typeUser,));
                                 },
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,

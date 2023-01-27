@@ -7,6 +7,7 @@ import 'package:mosand/view/resourse/assets_manager.dart';
 import 'package:mosand/view/resourse/values_manager.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../model/utils/consts_manager.dart';
 import '../../login/login_view.dart';
 
 class WelcomeViewBody extends StatelessWidget {
@@ -33,10 +34,15 @@ class WelcomeViewBody extends StatelessWidget {
           const SizedBox(height: AppSize.s10,),
           FadeInRightBig(
             child: buildWelcomeButton(context,text:tr(LocaleKeys.user),onTap:(){
-              Get.to(()=>LoginView());
+              Get.to(()=>LoginView(typeUser: AppConstants.collectionUser,));
             }),
           ),
-          FadeInLeftBig(child: buildWelcomeButton(context,text:tr(LocaleKeys.lawyer),onTap:(){}))
+          FadeInLeftBig(child: buildWelcomeButton(context,text:tr(LocaleKeys.lawyer),onTap:(){
+            Get.to(()=>LoginView(typeUser: AppConstants.collectionLawyer,));
+          })),
+          FadeInRightBig(child: buildWelcomeButton(context,text:tr(LocaleKeys.supervisor),onTap:(){
+            Get.to(()=>LoginView(typeUser: AppConstants.collectionAdmin,));
+          }))
         ],
       ),
     );

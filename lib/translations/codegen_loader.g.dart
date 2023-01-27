@@ -143,7 +143,21 @@ class CodegenLoader extends AssetLoader{
   "zakat_tax_d": "الاستشارات المتعلقة بجميع النشاطات الخاضعة لنظام الزكاة والضريبة ",
   "administrative_cases_d": "وتشمع جميع أنواع الدعاوي الإدارية التي ترفع من جهة الإدارة أو ضدها ",
   "insurance_cases_d": "تشمل الدعاوي التي تكون بشركات التأمين والمستفيدين ",
-  "financing_cases_d": "وتشمل الدعاوي التي تخص شركات التمويل والبنوك"
+  "financing_cases_d": "وتشمل الدعاوي التي تخص شركات التمويل والبنوك",
+  "toast": "",
+  "toast_successfully_created": "تم إنشاء الحساب بنجاح",
+  "toast_successfully_update": "تم تحديث المعلومات بنجاح",
+  "toast_Unsuccessfully_created": "فشل إنشاء الحساب",
+  "toast_email_already_use": "البريد الإلكتروني قيد الاستخدام بالفعل",
+  "toast_short_password": "كلمة المرور قصيرة\nيجب ألا تقل عن 6 أحرف",
+  "toast_successfully_logged": "تم تسجيل الدخول بنجاح",
+  "toast_email_invalid": "البريد غير صحيح",
+  "toast_password_invalid": "كلمة السر غير صحيحة",
+  "toast_network_error": "حدث خطأ في الاتصال",
+  "toast_account_invalid": "الحساب غير صحيح",
+  "toast_Bad_data_fetch": "خطأ داخلي: جلب سيء للبيانات",
+  "toast_time_out": "خطأ في الاتصال",
+  "toast_given_empty": "القيمة المعطاء فارغة"
 };
 static const Map<String,dynamic> en = {
   "waitr": "Waitr",
@@ -274,7 +288,21 @@ static const Map<String,dynamic> en = {
   "zakat_tax_d": "Consultations related to all activities subject to the system of zakat and tax",
   "administrative_cases_d": "It includes all types of administrative lawsuits filed by or against the administration",
   "insurance_cases_d": "These include lawsuits filed by insurance companies and beneficiaries",
-  "financing_cases_d": "These include lawsuits related to financing companies and banks"
+  "financing_cases_d": "These include lawsuits related to financing companies and banks",
+  "toast": "",
+  "toast_successfully_created": "Account successfully created",
+  "toast_successfully_update": "Account successfully update",
+  "toast_Unsuccessfully_created": "Account Unsuccessfully created",
+  "toast_email_already_use": "The email address is already in use",
+  "toast_short_password": "short password\nshould be at least 6 characters",
+  "toast_successfully_logged": "successfully logged",
+  "toast_email_invalid": "The email is invalid",
+  "toast_password_invalid": "The password is invalid",
+  "toast_network_error": "A network error",
+  "toast_account_invalid": "Account is invalid",
+  "toast_Bad_data_fetch": "Internal Error: Bad data fetch",
+  "toast_time_out": "time out",
+  "toast_given_empty": "Given String is empty or null"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

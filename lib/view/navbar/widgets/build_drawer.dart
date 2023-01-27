@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:mosand/view/lawyer/add_date/add_date_view.dart';
 import 'package:mosand/view/resourse/values_manager.dart';
+import '../../../model/utils/local/storage.dart';
+import '../../welcome/welcome_view.dart';
 import '/view/admin/add_office/add_office_view.dart';
 import '/view/manager/widgets/custom_listtile.dart';
 import '/view/profile/profile_view.dart';
@@ -109,6 +111,15 @@ class BuildDrawer extends StatelessWidget {
         Divider(
           height: 0.0,
           color: Theme.of(context).primaryColor.withOpacity(.5),
+        ),
+        CustomListTile(
+          onTap: (){
+            AppStorage.depose();
+            Get.to(()=>WelcomeView());
+            //  exit(0);
+          },
+          icon: Icons.logout,
+          title: tr(LocaleKeys.exit),
         ),
         Spacer(),
         GestureDetector(

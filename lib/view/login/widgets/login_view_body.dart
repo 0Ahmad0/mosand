@@ -1,4 +1,6 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:mosand/model/utils/consts_manager.dart';
+import '../../../controller/auth_controller.dart';
 import '/view/home/home_view.dart';
 import '/view/navbar/navbar.dart';
 import '/view/signup/signup_view.dart';
@@ -16,6 +18,9 @@ import '../../manager/widgets/button_app.dart';
 import '../../resourse/color_manager.dart';
 
 class LoginViewBody extends StatelessWidget {
+  LoginViewBody({required this.authController,required this.typeUser});
+  final AuthController authController;
+  final String typeUser;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final forgetPasswordController = TextEditingController();
@@ -96,19 +101,21 @@ class LoginViewBody extends StatelessWidget {
                    FadeInLeftBig(
                      child: ButtonApp(
                          text: tr(LocaleKeys.login),
-                         onPressed: () {
+                         onPressed: () async {
                            if (formKey.currentState!.validate()) {
-                             Get.to(()=>NavbarView());
+                            await authController.login(email: emailController.text, password: passwordController.text, typeUser: typeUser);
                            }
                          }),
                    ),
+                   if(!typeUser.contains(AppConstants.collectionAdmin))
                    const SizedBox(
                      height: AppSize.s4,
                    ),
+                   if(!typeUser.contains(AppConstants.collectionAdmin))
                    FadeInLeftBig(
                      child: TextButton(
                          onPressed: () {
-                           Get.off(SignupView());
+                           Get.off(SignupView(typeUser: typeUser));
                          },
                          child: Row(
                            mainAxisAlignment: MainAxisAlignment.center,

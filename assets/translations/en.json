@@ -127,5 +127,21 @@
   "zakat_tax_d": "Consultations related to all activities subject to the system of zakat and tax",
   "administrative_cases_d": "It includes all types of administrative lawsuits filed by or against the administration",
   "insurance_cases_d": "These include lawsuits filed by insurance companies and beneficiaries",
-  "financing_cases_d": "These include lawsuits related to financing companies and banks"
+  "financing_cases_d": "These include lawsuits related to financing companies and banks",
+
+
+  "toast": "",
+  "toast_successfully_created": "Account successfully created",
+  "toast_successfully_update": "Account successfully update",
+  "toast_Unsuccessfully_created": "Account Unsuccessfully created",
+  "toast_email_already_use": "The email address is already in use",
+  "toast_short_password": "short password\nshould be at least 6 characters",
+  "toast_successfully_logged":"successfully logged",
+  "toast_email_invalid":"The email is invalid",
+  "toast_password_invalid":"The password is invalid",
+  "toast_network_error":"A network error",
+  "toast_account_invalid":"Account is invalid",
+  "toast_Bad_data_fetch":"Internal Error: Bad data fetch",
+  "toast_time_out":"time out",
+  "toast_given_empty":"Given String is empty or null"
 }

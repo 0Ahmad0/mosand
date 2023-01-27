@@ -130,5 +130,7 @@ abstract class  LocaleKeys {
   static const administrative_cases_d = 'administrative_cases_d';
   static const insurance_cases_d = 'insurance_cases_d';
   static const financing_cases_d = 'financing_cases_d';
+  static const add_post = 'add_post';
+  static const posts = 'posts';
 
 }

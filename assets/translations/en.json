@@ -144,4 +144,8 @@
   "toast_Bad_data_fetch":"Internal Error: Bad data fetch",
   "toast_time_out":"time out",
   "toast_given_empty":"Given String is empty or null"
+  "financing_cases_d": "These include lawsuits related to financing companies and banks",
+  "add_post": "Add an internship opportunity",
+  "posts": "internship opportunity"
+
 }

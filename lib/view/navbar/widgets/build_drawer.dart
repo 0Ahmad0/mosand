@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:mosand/view/lawyer/add_date/add_date_view.dart';
+import 'package:mosand/view/lawyer/add_post/add_post_view.dart';
 import 'package:mosand/view/resourse/values_manager.dart';
+import 'package:mosand/view/show_posts/show_posts_view.dart';
 import '../../../model/utils/local/storage.dart';
 import '../../welcome/welcome_view.dart';
 import '/view/admin/add_office/add_office_view.dart';
@@ -108,6 +110,20 @@ class BuildDrawer extends StatelessWidget {
         CustomListTile(
             onTap: ()=>Get.to(()=>AddDateView()),
             title: tr(LocaleKeys.add_date), icon: Icons.date_range),
+        Divider(
+          height: 0.0,
+          color: Theme.of(context).primaryColor.withOpacity(.5),
+        ),
+        CustomListTile(
+            onTap: ()=>Get.to(()=>AddPostView()),
+            title: tr(LocaleKeys.add_post), icon: Icons.post_add),
+        Divider(
+          height: 0.0,
+          color: Theme.of(context).primaryColor.withOpacity(.5),
+        ),
+        CustomListTile(
+            onTap: ()=>Get.to(()=>ShowPostsView()),
+            title: tr(LocaleKeys.posts), icon: Icons.book),
         Divider(
           height: 0.0,
           color: Theme.of(context).primaryColor.withOpacity(.5),

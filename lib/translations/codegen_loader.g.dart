@@ -78,7 +78,7 @@ class CodegenLoader extends AssetLoader{
   "favorite_page": "المفضلة",
   "search": "ابحث هن...",
   "location": "الموقع",
-  "price": "العمولة",
+  "price": "السعر",
   "from": "من الساعة",
   "to": "إلى الساعة",
   "add_office": "إضافة مكتب تحويل",
@@ -143,6 +143,9 @@ class CodegenLoader extends AssetLoader{
   "zakat_tax_d": "الاستشارات المتعلقة بجميع النشاطات الخاضعة لنظام الزكاة والضريبة ",
   "administrative_cases_d": "وتشمع جميع أنواع الدعاوي الإدارية التي ترفع من جهة الإدارة أو ضدها ",
   "insurance_cases_d": "تشمل الدعاوي التي تكون بشركات التأمين والمستفيدين ",
+  "financing_cases_d": "وتشمل الدعاوي التي تخص شركات التمويل والبنوك",
+  "add_post": "إضافة فرصة تدريب",
+  "posts": "فرص التدريب"
   "financing_cases_d": "وتشمل الدعاوي التي تخص شركات التمويل والبنوك",
   "toast": "",
   "toast_successfully_created": "تم إنشاء الحساب بنجاح",
@@ -288,6 +291,9 @@ static const Map<String,dynamic> en = {
   "zakat_tax_d": "Consultations related to all activities subject to the system of zakat and tax",
   "administrative_cases_d": "It includes all types of administrative lawsuits filed by or against the administration",
   "insurance_cases_d": "These include lawsuits filed by insurance companies and beneficiaries",
+  "financing_cases_d": "These include lawsuits related to financing companies and banks",
+  "add_post": "Add an internship opportunity",
+  "posts": "internship opportunity"
   "financing_cases_d": "These include lawsuits related to financing companies and banks",
   "toast": "",
   "toast_successfully_created": "Account successfully created",

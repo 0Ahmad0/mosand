@@ -3,7 +3,6 @@ import 'package:mosand/view/lawyer/add_date/add_date_view.dart';
 import 'package:mosand/view/lawyer/add_post/add_post_view.dart';
 import 'package:mosand/view/resourse/values_manager.dart';
 import 'package:mosand/view/show_posts/show_posts_view.dart';
-import '/view/admin/add_office/add_office_view.dart';
 import '/view/manager/widgets/custom_listtile.dart';
 import '/view/profile/profile_view.dart';
 import '/view/setting/setting_view.dart';

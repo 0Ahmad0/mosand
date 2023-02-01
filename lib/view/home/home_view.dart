@@ -6,6 +6,7 @@ import 'package:mosand/model/models.dart';
 import 'package:mosand/model/utils/consts_manager.dart';
 import 'package:mosand/view/all_lawyers/all_lawyers_view.dart';
 import 'package:mosand/view/manager/widgets/button_app.dart';
+import 'package:mosand/view/resourse/color_manager.dart';
 import '../../controller/home_controller.dart';
 import '../../model/utils/const.dart';
 import '/view/manager/widgets/textformfiled_app.dart';
@@ -222,15 +223,17 @@ class HomeView extends StatelessWidget {
             children: [
               for(int i =0 ; i < homeController.mapTimeDayLawyer[homeController.selectDateController]['am'].length;i++)
                 Container(
-                  ///TODO add border
-                  ///with cond : (homeController.selectTimeDayController==homeController.mapTimeDayLawyer[homeController.selectDateController]['pm'][i])
-
                 margin: const EdgeInsets.symmetric(horizontal: AppMargin.m4),
                   child: InkWell(
                     onTap: (){
                       homeController.selectTimeDayController=homeController.mapTimeDayLawyer[homeController.selectDateController]['am'][i];
                       print('${homeController.selectTimeDayController}');},
                     child: Chip(
+                      side: BorderSide(
+                        color:                    (homeController.selectTimeDayController==homeController.mapTimeDayLawyer[homeController.selectDateController]['pm'][i])
+                            ? ColorManager.primaryColor
+                            :Colors.transparent
+                      ),
                       label: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [

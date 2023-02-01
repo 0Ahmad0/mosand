@@ -150,6 +150,13 @@ class FirebaseFun{
         .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
     return result;
   }
+  static fetchUsersByTypeUser(String typeUser)  async {
+    final result=await FirebaseFirestore.instance.collection(typeUser)
+        .get()
+        .then((onValueFetchUsers))
+        .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
   static sendPasswordResetEmail( {required String email})  async {
     final result=await FirebaseAuth.instance.sendPasswordResetEmail(
       email: email,///"temp@gmail.com",
@@ -165,8 +172,66 @@ class FirebaseFun{
     return result;
   }
 
+  ///DateLawyer
+  static addDateLawyer( {required model.DateLawyer dateLawyer}) async {
+    final result= await FirebaseFirestore.instance.collection(AppConstants.collectionDateLawyer).add(
+        dateLawyer.toJson()
+    ).then(onValueAddDateLawyer).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static updateDateLawyer( {required model.DateLawyer dateLawyer}) async {
+    final result= await FirebaseFirestore.instance.collection(AppConstants.collectionDateLawyer).doc(
+        dateLawyer.id
+    ).update(dateLawyer.toJson()).then(onValueUpdateDateLawyer).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static deleteDateLawyer( {required model.DateLawyer dateLawyer}) async {
+    final result= await FirebaseFirestore.instance.collection(AppConstants.collectionDateLawyer).doc(
+        dateLawyer.id
+    ).delete().then(onValueDeleteDateLawyer).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  ///Internship
+  static addInternship( {required model.Internship internship}) async {
+    final result= await FirebaseFirestore.instance.collection(AppConstants.collectionInternship).add(
+        internship.toJson()
+    ).then(onValueAddInternship).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static updateInternship( {required model.Internship internship}) async {
+    final result= await FirebaseFirestore.instance.collection(AppConstants.collectionInternship).doc(
+        internship.id
+    ).update(internship.toJson()).then(onValueUpdateInternship).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static deleteInternship( {required model.Internship internship}) async {
+    final result= await FirebaseFirestore.instance.collection(AppConstants.collectionInternship).doc(
+        internship.id
+    ).delete().then(onValueDeleteInternship).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
 
-   static Future<Map<String,dynamic>>  onError(error) async {
+  ///DateO
+  static addDateO( {required model.DateO dateO}) async {
+    final result= await FirebaseFirestore.instance.collection(AppConstants.collectionDateO).add(
+        dateO.toJson()
+    ).then(onValueAddDateO).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static updateDateO( {required model.DateO dateO}) async {
+    final result= await FirebaseFirestore.instance.collection(AppConstants.collectionDateO).doc(
+        dateO.id
+    ).update(dateO.toJson()).then(onValueUpdateDateO).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static deleteDateO( {required model.DateO dateO}) async {
+    final result= await FirebaseFirestore.instance.collection(AppConstants.collectionDateO).doc(
+        dateO.id
+    ).delete().then(onValueDeleteDateO).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+
+  static Future<Map<String,dynamic>>  onError(error) async {
     print(false);
     print(error);
     return {
@@ -273,12 +338,12 @@ class FirebaseFun{
     };
   }
   static Future<Map<String,dynamic>> onValueFetchUsers(value) async{
-    print(true);
+   // print(true);
     print("Users count : ${value.docs.length}");
 
     return {
       'status':true,
-      'message':'Sessions successfully fetch',
+      'message':'Users successfully fetch',
       'body':value.docs
     };
   }
@@ -286,6 +351,72 @@ class FirebaseFun{
     return {
       'status':true,
       'message':'Password successfully update',
+      'body':{}
+    };
+  }
+
+  static Future<Map<String,dynamic>>onValueAddDateLawyer(value) async{
+    return {
+      'status':true,
+      'message':'DateLawyer successfully add',
+      'body':{}
+    };
+  }
+  static Future<Map<String,dynamic>>onValueUpdateDateLawyer(value) async{
+    return {
+      'status':true,
+      'message':'DateLawyer successfully update',
+      'body':{}
+    };
+  }
+  static Future<Map<String,dynamic>>onValueDeleteDateLawyer(value) async{
+    return {
+      'status':true,
+      'message':'DateLawyer successfully delete',
+      'body':{}
+    };
+  }
+
+  static Future<Map<String,dynamic>>onValueAddInternship(value) async{
+    return {
+      'status':true,
+      'message':'Internship successfully add',
+      'body':{}
+    };
+  }
+  static Future<Map<String,dynamic>>onValueUpdateInternship(value) async{
+    return {
+      'status':true,
+      'message':'Internship successfully update',
+      'body':{}
+    };
+  }
+  static Future<Map<String,dynamic>>onValueDeleteInternship(value) async{
+    return {
+      'status':true,
+      'message':'Internship successfully delete',
+      'body':{}
+    };
+  }
+
+  static Future<Map<String,dynamic>>onValueAddDateO(value) async{
+    return {
+      'status':true,
+      'message':'DateO successfully add',
+      'body':{}
+    };
+  }
+  static Future<Map<String,dynamic>>onValueUpdateDateO(value) async{
+    return {
+      'status':true,
+      'message':'DateO successfully update',
+      'body':{}
+    };
+  }
+  static Future<Map<String,dynamic>>onValueDeleteDateO(value) async{
+    return {
+      'status':true,
+      'message':'DateO successfully delete',
       'body':{}
     };
   }

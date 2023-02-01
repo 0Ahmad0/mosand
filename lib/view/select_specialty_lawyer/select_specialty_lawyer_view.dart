@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:mosand/controller/date_controller.dart';
 import 'package:mosand/translations/locale_keys.g.dart';
 import 'package:mosand/view/manager/widgets/ShadowContainer.dart';
 import 'package:mosand/view/resourse/assets_manager.dart';
@@ -11,8 +12,10 @@ import 'package:mosand/view/resourse/style_manager.dart';
 import 'package:mosand/view/resourse/values_manager.dart';
 
 class SelectSpecialtyLawyerView extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text(tr(LocaleKeys.specialty_lawyer)),
@@ -44,7 +47,6 @@ class SelectSpecialtyLawyerItem extends StatefulWidget {
 
 class _SelectSpecialtyLawyerItemState extends State<SelectSpecialtyLawyerItem> {
   bool isShow = false;
-
   @override
   Widget build(BuildContext context) {
     List<String> specialtyLawyer = [
@@ -78,7 +80,7 @@ class _SelectSpecialtyLawyerItemState extends State<SelectSpecialtyLawyerItem> {
         children: [
           GestureDetector(
             onTap: (){
-              Get.back();
+              Get.back(result: specialtyLawyer[widget.index]);
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,

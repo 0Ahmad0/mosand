@@ -145,8 +145,9 @@ class CodegenLoader extends AssetLoader{
   "insurance_cases_d": "تشمل الدعاوي التي تكون بشركات التأمين والمستفيدين ",
   "financing_cases_d": "وتشمل الدعاوي التي تخص شركات التمويل والبنوك",
   "add_post": "إضافة فرصة تدريب",
-  "posts": "فرص التدريب"
-  "financing_cases_d": "وتشمل الدعاوي التي تخص شركات التمويل والبنوك",
+  "posts": "فرص التدريب",
+  "start_time_great_end_time": "وقت البداية أكبر من وقت النهاية",
+  "end_time_least_hour_greater": "ضع وقت النهاية على الاقل اكبر بساعة",
   "toast": "",
   "toast_successfully_created": "تم إنشاء الحساب بنجاح",
   "toast_successfully_update": "تم تحديث المعلومات بنجاح",
@@ -293,8 +294,9 @@ static const Map<String,dynamic> en = {
   "insurance_cases_d": "These include lawsuits filed by insurance companies and beneficiaries",
   "financing_cases_d": "These include lawsuits related to financing companies and banks",
   "add_post": "Add an internship opportunity",
-  "posts": "internship opportunity"
-  "financing_cases_d": "These include lawsuits related to financing companies and banks",
+  "posts": "internship opportunity",
+  "start_time_great_end_time": "The start time is greater than the end time",
+  "end_time_least_hour_greater": "Set the end time to be at least an hour greater than",
   "toast": "",
   "toast_successfully_created": "Account successfully created",
   "toast_successfully_update": "Account successfully update",

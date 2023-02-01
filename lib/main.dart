@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:mosand/controller/provider/date_provider.dart';
+import 'package:mosand/controller/provider/process_provider.dart';
 import 'package:provider/provider.dart';
 
 import '/view/splash/splash_view.dart';
@@ -11,6 +13,8 @@ import '/view/resourse/theme_manager.dart';
 import 'package:sizer/sizer.dart';
 
 import 'controller/provider/auth_provider.dart';
+import 'controller/provider/date_lawyer_provider.dart';
+import 'controller/provider/internship_provider.dart';
 import 'controller/provider/profile_provider.dart';
 import 'firebase_options.dart';
 import 'translations/codegen_loader.g.dart';
@@ -28,7 +32,7 @@ Future<void> main()async{
         Locale("en"),
         Locale("ar"),
       ],
-      fallbackLocale: Locale("en"),
+      fallbackLocale: Locale("ar"),
       // assetLoader: CodegenLoader(),
       child: MyApp(),
     ),
@@ -47,7 +51,10 @@ class MyApp extends StatelessWidget {
      // Provider<HomeProvider>(create: (_)=>HomeProvider()),
       ListenableProvider<AuthProvider>(create: (_) => AuthProvider()),
       ListenableProvider<ProfileProvider>(create: (_)=>ProfileProvider()),
-
+      ListenableProvider<DateLawyerProvider>(create: (_)=>DateLawyerProvider()),
+      ListenableProvider<InternshipProvider>(create: (_)=>InternshipProvider()),
+      ListenableProvider<ProcessProvider>(create: (_)=>ProcessProvider()),
+      ListenableProvider<DateOProvider>(create: (_)=>DateOProvider()),
     ],
         child:
         Sizer(

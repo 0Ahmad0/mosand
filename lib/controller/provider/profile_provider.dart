@@ -12,9 +12,11 @@ import 'package:path/path.dart';
 
 import '../../model/models.dart' as models;
 import '../../model/utils/const.dart';
+import '../../model/utils/consts_manager.dart';
 import '../../model/utils/local/storage.dart';
 
 class ProfileProvider with ChangeNotifier{
+
    var name = TextEditingController(text: "أحمد الحريري");
   var email = TextEditingController(text: "Ahmad2001@gmail.com");
    var phoneNumber = TextEditingController(text: "");
@@ -69,6 +71,7 @@ class ProfileProvider with ChangeNotifier{
      }
      //Navigator.of(context).pop();
    }
+
 
 
 

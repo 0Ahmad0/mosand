@@ -132,6 +132,8 @@ abstract class  LocaleKeys {
   static const financing_cases_d = 'financing_cases_d';
   static const add_post = 'add_post';
   static const posts = 'posts';
+  static const start_time_great_end_time = 'start_time_great_end_time';
+  static const end_time_least_hour_greater = 'end_time_least_hour_greater';
   static const toast = 'toast';
   static const toast_successfully_created = 'toast_successfully_created';
   static const toast_successfully_update = 'toast_successfully_update';

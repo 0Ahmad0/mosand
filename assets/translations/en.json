@@ -128,7 +128,11 @@
   "administrative_cases_d": "It includes all types of administrative lawsuits filed by or against the administration",
   "insurance_cases_d": "These include lawsuits filed by insurance companies and beneficiaries",
   "financing_cases_d": "These include lawsuits related to financing companies and banks",
-
+  "financing_cases_d": "These include lawsuits related to financing companies and banks",
+  "add_post": "Add an internship opportunity",
+  "posts": "internship opportunity",
+  "start_time_great_end_time": "The start time is greater than the end time",
+  "end_time_least_hour_greater": "Set the end time to be at least an hour greater than",
 
   "toast": "",
   "toast_successfully_created": "Account successfully created",
@@ -144,8 +148,6 @@
   "toast_Bad_data_fetch":"Internal Error: Bad data fetch",
   "toast_time_out":"time out",
   "toast_given_empty":"Given String is empty or null"
-  "financing_cases_d": "These include lawsuits related to financing companies and banks",
-  "add_post": "Add an internship opportunity",
-  "posts": "internship opportunity"
+
 
 }

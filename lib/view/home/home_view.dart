@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:mosand/model/models.dart';
@@ -7,6 +8,7 @@ import 'package:mosand/model/utils/consts_manager.dart';
 import 'package:mosand/view/all_lawyers/all_lawyers_view.dart';
 import 'package:mosand/view/manager/widgets/button_app.dart';
 import 'package:mosand/view/resourse/color_manager.dart';
+import 'package:mosand/view/resourse/assets_manager.dart';
 import '../../controller/home_controller.dart';
 import '../../model/utils/const.dart';
 import '/view/manager/widgets/textformfiled_app.dart';
@@ -20,9 +22,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
    HomeView({Key? key}) : super(key: key);
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   late HomeController homeController;
+
   @override
   Widget build(BuildContext context) {
     homeController=HomeController(context: context);
@@ -101,17 +110,16 @@ class HomeView extends StatelessWidget {
           ),
           const SizedBox(height: AppSize.s10,),
           if(homeController.idLawyerController.text!="")
-            StreamBuilder<QuerySnapshot>(
+            FutureBuilder<QuerySnapshot>(
               //prints the messages to the screen0
-                stream: homeController.fetchDateLawyerByIdLawyer(
+                future: homeController.fetchDateLawyerByIdLawyer(
                     idLawyer: homeController.lawyer.id),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return
                       Const.SHOWLOADINGINDECATOR();
                   }
-                  else if (snapshot.connectionState ==
-                      ConnectionState.active) {
+                  {
                     if (snapshot.hasError) {
                       return const Text('Error');
                     } else if (snapshot.hasData) {
@@ -126,9 +134,7 @@ class HomeView extends StatelessWidget {
                       return const Text('Empty data');
                     }
                   }
-                  else {
-                    return Text('State: ${snapshot.connectionState}');
-                  }
+
                 }),
 
 
@@ -136,8 +142,12 @@ class HomeView extends StatelessWidget {
       );
     });
   }
+
   secondPhase(BuildContext context){
     return
+      (!homeController.checkDateDayLawyer(homeController.dateLawyer))?
+      SvgPicture.asset(AssetsManager.noDatesFoundIMG)
+          :
       StatefulBuilder(builder: (_, setStateD)
     =>
       ListBody(
@@ -170,9 +180,9 @@ class HomeView extends StatelessWidget {
             ),
             const SizedBox(height: AppSize.s10,),
 
-            StreamBuilder<QuerySnapshot>(
+            FutureBuilder<QuerySnapshot>(
               //prints the messages to the screen0
-                stream: homeController.fetchDate0ByIdLawyer(
+                future: homeController.fetchDate0ByIdLawyer(
                     idLawyer: homeController.lawyer.id),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -181,36 +191,37 @@ class HomeView extends StatelessWidget {
                       buildDateLawyer(context):
                       Const.SHOWLOADINGINDECATOR();
                   }
-                  else if (snapshot.connectionState ==
-                      ConnectionState.active) {
+
                     if (snapshot.hasError) {
                       return const Text('Error');
                     } else if (snapshot.hasData) {
                       Const.SHOWLOADINGINDECATOR();
-                     // if (homeController. > 0) {
+                     if (snapshot.data!.docs.length > 0) {
+                       homeController.dateOController.dateOProvider.dateOs=DateOs.fromJson(snapshot.data!.docs);
+                       //print(homeController.dateOController.dateOProvider.dateOs.toJson());
+                     }
                         homeController.processTimeDay(dateTime: homeController.selectDateController);
                        // print(homeController.mapTimeDayLawyer);
                       //}
                       return buildDateLawyer(context);
 
                       /// }));
-                    } else {
-                      return const Text('Empty data');
-                    }
                   }
                   else {
                     return Text('State: ${snapshot.connectionState}');
                   }
                 }),
-            const SizedBox(height: AppSize.s10,),
-            ButtonApp(text: tr(LocaleKeys.next), onPressed: () {
-              Get.to(() => AllLawyersView());
-            })
+
           ])
     );
   }
+
    buildDateLawyer(BuildContext context){
-    return ListBody(
+    return
+      (homeController.mapTimeDayLawyer[homeController.selectDateController]['am'].length+homeController.mapTimeDayLawyer[homeController.selectDateController]['pm'].length<=0)?
+      SvgPicture.asset(AssetsManager.noTimeFoundIMG):
+      StatefulBuilder(builder: (_, setStateT) =>
+      ListBody(
       children: [
         if(homeController.mapTimeDayLawyer[homeController.selectDateController]['am'].length>0)
           Text(tr(LocaleKeys.morning),style: getBoldStyle(
@@ -227,10 +238,11 @@ class HomeView extends StatelessWidget {
                   child: InkWell(
                     onTap: (){
                       homeController.selectTimeDayController=homeController.mapTimeDayLawyer[homeController.selectDateController]['am'][i];
-                      print('${homeController.selectTimeDayController}');},
+                      print('${homeController.selectTimeDayController}');
+                      setStateT((){});},
                     child: Chip(
                       side: BorderSide(
-                        color:                    (homeController.selectTimeDayController==homeController.mapTimeDayLawyer[homeController.selectDateController]['pm'][i])
+                        color:                    (homeController.selectTimeDayController==homeController.mapTimeDayLawyer[homeController.selectDateController]['am'][i])
                             ? ColorManager.primaryColor
                             :Colors.transparent
                       ),
@@ -265,9 +277,15 @@ class HomeView extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: AppMargin.m4),
                   child: InkWell(
                     onTap: (){
-                      homeController.selectTimeDayController=homeController.mapTimeDayLawyer[homeController.selectDateController]['am'][i];
-                      print('${homeController.selectTimeDayController}');},
+                      homeController.selectTimeDayController=homeController.mapTimeDayLawyer[homeController.selectDateController]['pm'][i];
+                      print('${homeController.selectTimeDayController}');
+                      setStateT((){});},
                     child: Chip(
+                      side: BorderSide(
+                          color:                    (homeController.selectTimeDayController==homeController.mapTimeDayLawyer[homeController.selectDateController]['pm'][i])
+                              ? ColorManager.primaryColor
+                              :Colors.transparent
+                      ),
                       label: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -282,7 +300,15 @@ class HomeView extends StatelessWidget {
                 )
             ],
           ),
+        const SizedBox(height: AppSize.s10,),
+        ButtonApp(text: tr(LocaleKeys.next), onPressed: () async {
+        var result= await  homeController.addDateO(context);
+         if(result['status'])
+          setState(() {
+
+          });
+        })
       ],
-      );
+      ));
    }
 }

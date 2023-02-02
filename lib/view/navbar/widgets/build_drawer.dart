@@ -5,6 +5,7 @@ import 'package:mosand/view/resourse/values_manager.dart';
 import 'package:mosand/view/show_posts/show_posts_view.dart';
 import 'package:provider/provider.dart';
 import '../../../controller/provider/profile_provider.dart';
+import '../../../model/utils/consts_manager.dart';
 import '../../../model/utils/local/storage.dart';
 import '../../app/picture/cach_picture_widget.dart';
 import '../../app/picture/profile_picture_widget.dart';
@@ -125,20 +126,8 @@ class BuildDrawer extends StatelessWidget {
             CustomListTile(
                 onTap: ()=>Get.to(()=>ProfileView()),
                 title: tr(LocaleKeys.profile), icon: Icons.person),
-            Divider(
-              height: 0.0,
-              color: Theme.of(context).primaryColor.withOpacity(.5),
-            ),
-            CustomListTile(
-                onTap: ()=>Get.to(()=>AddDateView()),
-                title: tr(LocaleKeys.add_date), icon: Icons.date_range),
-            Divider(
-              height: 0.0,
-              color: Theme.of(context).primaryColor.withOpacity(.5),
-            ),
-            CustomListTile(
-                onTap: ()=>Get.to(()=>AddPostView()),
-                title: tr(LocaleKeys.add_post), icon: Icons.post_add),
+           if(value.user.typeUser.contains(AppConstants.collectionLawyer))
+          customTileLawyer(context),
             Divider(
               height: 0.0,
               color: Theme.of(context).primaryColor.withOpacity(.5),
@@ -180,5 +169,25 @@ class BuildDrawer extends StatelessWidget {
           ],
         )
     ));
+  }
+  customTileLawyer(BuildContext context){
+    return ListBody(
+      children: [
+        Divider(
+          height: 0.0,
+          color: Theme.of(context).primaryColor.withOpacity(.5),
+        ),
+        CustomListTile(
+            onTap: ()=>Get.to(()=>AddDateView()),
+            title: tr(LocaleKeys.add_date), icon: Icons.date_range),
+        Divider(
+          height: 0.0,
+          color: Theme.of(context).primaryColor.withOpacity(.5),
+        ),
+        CustomListTile(
+            onTap: ()=>Get.to(()=>AddPostView()),
+            title: tr(LocaleKeys.add_post), icon: Icons.post_add),
+      ],
+    );
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +12,11 @@ import 'package:mosand/controller/date_controller.dart';
 import 'package:mosand/controller/provider/auth_provider.dart';
 import 'package:mosand/controller/provider/date_provider.dart';
 import 'package:mosand/controller/provider/internship_provider.dart';
+import 'package:mosand/controller/provider/profile_provider.dart';
 import 'package:mosand/controller/utils/firebase.dart';
 import 'package:mosand/model/utils/consts_manager.dart';
+import 'package:mosand/translations/locale_keys.g.dart';
+import 'package:mosand/view/navbar/navbar.dart';
 import 'package:provider/provider.dart';
 import 'package:path/path.dart';
 
@@ -48,20 +52,20 @@ class HomeController{
     return  FirebaseFirestore.instance.
     collection(AppConstants.collectionDateLawyer)
         .where('idLawyer',isEqualTo: idLawyer)
-        .snapshots();
+        .get();
   }
   fetchDate0ByIdLawyer({required String idLawyer})  {
     return  FirebaseFirestore.instance.
     collection(AppConstants.collectionDateO)
         .where('idLawyer',isEqualTo: idLawyer)
-        .snapshots();
+        .get();
   }
   processTimeDay({required DateTime dateTime}){
     int weekday=dateTime.weekday;
     if(weekday>=7)
       weekday-=7;
     List<TimeOfDay> listHour=partDateDayToListHours(dateLawyer.dateDays[weekday.toString()]);
-    List<TimeOfDay> listHoursUsers=findHoursUsersByDateDay(dateTime: dateTime, listHoursUsers: listHour, dateOs: dateOController.dateOProvider.dateOs);
+    List<TimeOfDay> listHoursUsers=findHoursUsersByDateDay(dateTime: dateTime, listHour: listHour, dateOs: dateOController.dateOProvider.dateOs);
     List<TimeOfDay> listHoursUsersAm=[];
     List<TimeOfDay> listHoursUsersPm=[];
     for(TimeOfDay timeOfDay in listHoursUsers){
@@ -84,26 +88,45 @@ class HomeController{
     }
     return listHour;
   }
-  findHoursUsersByDateDay({required DateTime dateTime,required List<TimeOfDay> listHoursUsers,required DateOs dateOs}){
+  findHoursUsersByDateDay({required DateTime dateTime,required List<TimeOfDay> listHour,required DateOs dateOs}){
+    List<TimeOfDay> listHoursUsers=[];
+    listHoursUsers.addAll(listHour);
     for(DateO dateO in dateOs.listDateO){
-      if(compareDateTimeByYMD(dateTime1: dateTime,dateTime2: dateO.dateTime)==0){
+      if(dateOController.dateOProvider.compareDateTimeByYMD(dateTime1: dateTime,dateTime2: dateO.dateTime)==0){
         TimeOfDay timeOfDate=TimeOfDay(hour: dateO.dateTime.hour, minute: dateO.dateTime.minute);
-        for(TimeOfDay element in listHoursUsers){
-          if((timeOfDate.hour*60+timeOfDate.minute-60)<(element.hour*60+element.minute)
-          ||(timeOfDate.hour*60+timeOfDate.minute+60)>(element.hour*60+element.minute))
+        for(TimeOfDay element in listHour){
+          if(((timeOfDate.hour*60+timeOfDate.minute)-(element.hour*60+element.minute)).abs()<60)
             listHoursUsers.remove(element);
         }
       }
     }
+
    return listHoursUsers;
   }
-  compareDateTimeByYMD({required DateTime dateTime1,required DateTime dateTime2}){
-    int calDate1=dateTime1.year*365+dateTime1.month*12+dateTime1.day;
-    int calDate2=dateTime1.year*365+dateTime2.month*12+dateTime2.day;
-    if(calDate1>calDate2)
-      return 1;
-    else if(calDate1<calDate2)
-        return -1;
-    else return 0;
+
+  checkDateDayLawyer(DateLawyer dateLawyer){
+    for(DateDay dateDay in dateLawyer.dateDays.values)
+      if(dateDay.from!=null&&dateDay.to!=null) return true;
+    return false;
+  }
+  addDateO(BuildContext context) async {
+    final ProfileProvider profileProvider= Provider.of<ProfileProvider>(context,listen: false);
+    var result;
+    if(selectTimeDayController!=null
+        &&subjectConsultationController.text!=''
+        &&specialtyLawyerController.text!=''){
+      DateO dateO=DateO(idUser: profileProvider.user.id,
+          idLawyer: lawyer.id, specialtyLawyer: specialtyLawyerController.text,
+          subjectConsultation: subjectConsultationController.text,
+          dateTime:DateTime(selectDateController.year,selectDateController.month,selectDateController.day,selectTimeDayController!.hour,selectTimeDayController!.minute) );
+
+     result =await dateOController.addDateO(context, dateO: dateO);
+
+    }else{
+      Const.TOAST(context,textToast: tr(LocaleKeys.please_fill_all_fields));
+      result= FirebaseFun.errorUser(tr(LocaleKeys.please_fill_all_fields));
+    }
+    FocusManager.instance.primaryFocus!.unfocus();
+    return result;
   }
 }

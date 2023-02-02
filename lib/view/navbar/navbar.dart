@@ -1,5 +1,8 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:mosand/model/utils/consts_manager.dart';
+import 'package:provider/provider.dart';
+import '../../controller/provider/profile_provider.dart';
 import '../my_dates/my_dates_view.dart';
 import '/view/notification/notification_view.dart';
 import '/translations/locale_keys.g.dart';
@@ -21,12 +24,16 @@ class _NavbarViewState extends State<NavbarView> {
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    _screens = [
-      {
-        "title": tr(LocaleKeys.home_page),
-        "icon": Icons.home,
-        "screen": HomeView(),
-      },
+    ProfileProvider profileProvider= Provider.of<ProfileProvider>(context);
+    _screens=[];
+    if(profileProvider.user.typeUser.contains(AppConstants.collectionUser))
+      _screens.add(
+        {
+          "title": tr(LocaleKeys.home_page),
+          "icon": Icons.home,
+          "screen": HomeView(),
+        },);
+    _screens.addAll( [
       {
         "title": tr(LocaleKeys.my_dates),
         "icon": Icons.date_range,
@@ -42,7 +49,7 @@ class _NavbarViewState extends State<NavbarView> {
         "icon": Icons.notifications,
         "screen": NotificationView()
       },
-    ];
+    ]);
 
     return Scaffold(
       drawer: Drawer(
@@ -50,7 +57,7 @@ class _NavbarViewState extends State<NavbarView> {
     ),
       appBar: AppBar(
         title: Text(_screens[_currentIndex]['title']),
-        elevation: _currentIndex == 1 ? 0.0 : 4.0,
+        elevation: _currentIndex == 1 ? 0.0 : (_screens.length).toDouble(),
       ),
 
       body: _screens[_currentIndex]['screen'],

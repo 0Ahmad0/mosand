@@ -19,7 +19,7 @@ class ProcessProvider with ChangeNotifier{
   Map<String,dynamic> cacheUser=Map<String,dynamic>();
 
   fetchNameUser(context,{required String idUser}) async{
-    print(cacheUser[idUser]);
+  //  print(cacheUser[idUser]);
     if(cacheUser.containsKey(idUser)) return cacheUser[idUser];
     var result =await FirebaseFun.fetchUserId(id: idUser,typeUser: AppConstants.collectionUser);
     if(result['status']&&result['body']==null){
@@ -76,7 +76,6 @@ class ProcessProvider with ChangeNotifier{
       },
     );
   }
-
 
 
 

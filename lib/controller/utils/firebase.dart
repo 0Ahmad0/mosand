@@ -230,6 +230,22 @@ class FirebaseFun{
     ).delete().then(onValueDeleteDateO).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
     return result;
   }
+  static fetchDateOsByLawyer({required String idLawyer})  async {
+    final result=await FirebaseFirestore.instance.collection(AppConstants.collectionDateO)
+    .where('idLawyer',isEqualTo: idLawyer)
+        .get()
+        .then((onValueFetchDateOs))
+        .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static fetchDateOsByUser({required String idUser})  async {
+    final result=await FirebaseFirestore.instance.collection(AppConstants.collectionDateO)
+        .where('idUser',isEqualTo: idUser)
+        .get()
+        .then((onValueFetchDateOs))
+        .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
 
   static Future<Map<String,dynamic>>  onError(error) async {
     print(false);
@@ -418,6 +434,16 @@ class FirebaseFun{
       'status':true,
       'message':'DateO successfully delete',
       'body':{}
+    };
+  }
+  static Future<Map<String,dynamic>> onValueFetchDateOs(value) async{
+    // print(true);
+    print("Dates count : ${value.docs.length}");
+
+    return {
+      'status':true,
+      'message':'Dates successfully fetch',
+      'body':value.docs
     };
   }
 

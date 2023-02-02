@@ -134,6 +134,7 @@ abstract class  LocaleKeys {
   static const posts = 'posts';
   static const start_time_great_end_time = 'start_time_great_end_time';
   static const end_time_least_hour_greater = 'end_time_least_hour_greater';
+  static const please_fill_all_fields = 'please_fill_all_fields';
   static const toast = 'toast';
   static const toast_successfully_created = 'toast_successfully_created';
   static const toast_successfully_update = 'toast_successfully_update';

@@ -133,6 +133,7 @@
   "posts": "internship opportunity",
   "start_time_great_end_time": "The start time is greater than the end time",
   "end_time_least_hour_greater": "Set the end time to be at least an hour greater than",
+  "please_fill_all_fields": "Please fill in all fields",
 
   "toast": "",
   "toast_successfully_created": "Account successfully created",

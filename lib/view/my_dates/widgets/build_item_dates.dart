@@ -1,18 +1,21 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mosand/controller/provider/process_provider.dart';
 import 'package:mosand/view/manager/widgets/ShadowContainer.dart';
 import 'package:mosand/view/resourse/color_manager.dart';
 import 'package:mosand/view/resourse/values_manager.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class BuildItemDates extends StatelessWidget {
-  final String dateName, lawyerName, date;
+  final String dateName, lawyerName;
+  final DateTime date;
   final VoidCallback onTap;
   final IconData? icon, iconType;
   final VoidCallback? onTapIcon;
   final Color colorIcon,colorIcon2;
-
-  const BuildItemDates(
+  late ProcessProvider processProvider;
+   BuildItemDates(
       {super.key,
       required this.dateName,
       required this.lawyerName,
@@ -26,6 +29,7 @@ class BuildItemDates extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    processProvider= Provider.of<ProcessProvider>(context);
     return InkWell(
         onTap: onTap,
         child: ShadowContainer(
@@ -46,11 +50,11 @@ class BuildItemDates extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  title: Text(lawyerName),
+                  title:fetchName(context,lawyerName),// Text(lawyerName),
                   leading: Icon(Icons.person),
                 ),
                 ListTile(
-                  title: Text('${DateFormat.yMEd().format(DateTime.now())}'),
+                  title: Text('${DateFormat('MM/dd/yyyy hh:mm a').format(date)}'),
                   leading: Icon(Icons.date_range),
                   trailing: GestureDetector(
                     onTap: onTapIcon,
@@ -65,5 +69,8 @@ class BuildItemDates extends StatelessWidget {
             ),
           ),
         ));
+  }
+  fetchName(BuildContext context,String idUser){
+    return processProvider.widgetNameUser(context, idUser: idUser);
   }
 }

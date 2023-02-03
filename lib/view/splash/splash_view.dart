@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:provider/provider.dart';
 
 import '../../controller/provider/auth_provider.dart';
@@ -37,6 +39,17 @@ class _SplashViewState extends State<SplashView> {
   init(context,authProvider,profileProvider) async {
     await AppStorage.init();
     //print("f ${Advance.isLogined}");
+ ///TODO language
+    if(Advance.language){
+    //  await context.setLocale(Locale('ar'));
+      Get.updateLocale(Locale('ar'));
+    }else
+    {
+     // await context.setLocale(Locale('en'));
+      Get.updateLocale(Locale('en'));
+    }
+
+    ///end
     if(Advance.isLogined&&Advance.token!=""){
       final result = await authProvider.fetchUser(uid: Advance.uid);
       if(result['status']){

@@ -6,7 +6,9 @@ import 'package:mosand/controller/home_controller.dart';
 import 'package:mosand/controller/lawyer_accounts_controller.dart';
 import 'package:mosand/translations/locale_keys.g.dart';
 import 'package:mosand/view/manager/widgets/ShadowContainer.dart';
+import 'package:mosand/view/manager/widgets/button_app.dart';
 import 'package:mosand/view/resourse/color_manager.dart';
+import 'package:mosand/view/resourse/values_manager.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../controller/provider/profile_provider.dart';
@@ -82,12 +84,17 @@ class BuildShowAccountItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ShadowContainer(
-      child: ListTile(
-        contentPadding: EdgeInsets.zero,
-        title: Text(lawyer.name),
-        subtitle: Text(lawyer.active?LocaleKeys.active:LocaleKeys.non_active),
-        ///TODO @hairi add icon button
-        trailing: Icon(Icons.circle_rounded,color: !lawyer.active?ColorManager.error:ColorManager.success,),
+      child: Column(
+        children: [
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text(lawyer.name),
+            subtitle: Text(lawyer.active?LocaleKeys.active:LocaleKeys.non_active),
+
+            trailing: Icon(Icons.circle_rounded,color: !lawyer.active?ColorManager.error:ColorManager.success,),
+          ),
+          ButtonApp(text: 'text', onPressed: (){})
+        ],
       ),
     );
   }

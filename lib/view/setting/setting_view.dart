@@ -31,84 +31,89 @@ class SettingView extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Container(
-              margin: EdgeInsets.symmetric(vertical: AppSize.s8),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(AppSize.s14),
-                  color: ColorManager.lightGray.withOpacity(.2)),
-              child: Theme(
-                data: ThemeData().copyWith(
-                  dividerColor: Colors.transparent
-                ),
-                child: ExpansionTile(
-                  collapsedIconColor:
-                      Theme.of(context).textTheme.bodyText2!.color,
-                  iconColor: Theme.of(context).textTheme.bodyText2!.color,
-                  tilePadding: EdgeInsets.only(
-                    right: false ? AppSize.s16 : 0,
-                    left: true ? 0 : AppSize.s16,
-                  ),
-                  title: ListTile(
-                    title: Text(
-                      tr(LocaleKeys.language),
-                      style: getRegularStyle(
-                          color: Theme.of(context).textTheme.bodyText2!.color,
-                          fontSize: 15.sp),
+            StatefulBuilder(
+              builder: (context,mySetState) {
+                return Container(
+                  margin: EdgeInsets.symmetric(vertical: AppSize.s8),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(AppSize.s14),
+                      color: ColorManager.lightGray.withOpacity(.2)),
+                  child: Theme(
+                    data: ThemeData().copyWith(
+                      dividerColor: Colors.transparent
                     ),
-                    leading: Icon(Icons.language,color: ColorManager.lightGray,),
-                    subtitle: Text(
-                      true ? tr(LocaleKeys.english) : tr(LocaleKeys.arabic),
-                      style: getLightStyle(
-                        fontSize: 12.sp,
-                          color: Theme.of(context).textTheme.bodyText2!.color),
-                    ),
-                  ),
-                  children: [
-                    ListTile(
-                      title: Text(
-                        tr(LocaleKeys.english),
-                        style: getRegularStyle(
-                          color: Theme.of(context).textTheme.bodyText1!.color,
-                          fontSize: 14.sp,
+                    child: ExpansionTile(
+                      collapsedIconColor:
+                          Theme.of(context).textTheme.bodyText2!.color,
+                      iconColor: Theme.of(context).textTheme.bodyText2!.color,
+                      tilePadding: EdgeInsets.only(
+                        right: !Advance.language ? AppSize.s16 : 0,
+                        left: !Advance.language ? 0 : AppSize.s16,
+                      ),
+                      title: ListTile(
+                        title: Text(
+                          tr(LocaleKeys.language),
+                          style: getRegularStyle(
+                              color: Theme.of(context).textTheme.bodyText2!.color,
+                              fontSize: 15.sp),
+                        ),
+                        leading: Icon(Icons.language,color: ColorManager.lightGray,),
+                        subtitle: Text(
+                          !Advance.language ? tr(LocaleKeys.english) : tr(LocaleKeys.arabic),
+                          style: getLightStyle(
+                            fontSize: 12.sp,
+                              color: Theme.of(context).textTheme.bodyText2!.color),
                         ),
                       ),
-                      leading: SizedBox(),
-                      trailing: Switch(
-                        activeColor: Theme.of(context).primaryColor,
-                        value: true,
-                        onChanged: (val) async {
-                          await context.setLocale(Locale('en'));
-                          Get.updateLocale(context.locale);
-                           AppStorage.storageWrite(key: AppConstants.languageKEY, value: false);
-                           Advance.language = false;
-                        },
-                      ),
-                    ),
-                    ListTile(
-                      title: Text(
-                        tr(LocaleKeys.arabic),
-                        style: getRegularStyle(
-                          color: Theme.of(context).textTheme.bodyText1!.color,
-                          fontSize: 14.sp,
+                      children: [
+                        ListTile(
+                          title: Text(
+                            tr(LocaleKeys.english),
+                            style: getRegularStyle(
+                              color: Theme.of(context).textTheme.bodyText2!.color,
+                              fontSize: 14.sp,
+                            ),
+                          ),
+                          leading: SizedBox(),
+                          trailing: Switch(
+                            activeColor: Theme.of(context).primaryColor,
+                            value: !Advance.language,
+                            onChanged: (val) async {
+                              await context.setLocale(Locale('en'));
+                              Get.updateLocale(context.locale);
+                               AppStorage.storageWrite(key: AppConstants.languageKEY, value: false);
+                               Advance.language = false;
+
+                            },
+                          ),
                         ),
-                      ),
-                      leading: SizedBox(),
-                      trailing: Switch(
-                        activeColor: Theme.of(context).primaryColor,
-                        value: !true,
-                        onChanged: (val) async {
-                          await context.setLocale(Locale('ar'));
-                          // context.findAncestorStateOfType<_RestartWidgetState>().restartApp();
-                          Get.updateLocale(context.locale);
-                          // //
-                          AppStorage.storageWrite(key: AppConstants.languageKEY, value: true);
-                           Advance.language = true;
-                        },
-                      ),
+                        ListTile(
+                          title: Text(
+                            tr(LocaleKeys.arabic),
+                            style: getRegularStyle(
+                              color: Theme.of(context).textTheme.bodyText2!.color,
+                              fontSize: 14.sp,
+                            ),
+                          ),
+                          leading: SizedBox(),
+                          trailing: Switch(
+                            activeColor: Theme.of(context).primaryColor,
+                            value: Advance.language,
+                            onChanged: (val) async {
+                              await context.setLocale(Locale('ar'));
+                              // context.findAncestorStateOfType<_RestartWidgetState>().restartApp();
+                              Get.updateLocale(context.locale);
+                              // //
+                              AppStorage.storageWrite(key: AppConstants.languageKEY, value: true);
+                               Advance.language = true;
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
+                );
+              }
             ),
             Container(
               margin: EdgeInsets.symmetric(vertical: AppSize.s8),

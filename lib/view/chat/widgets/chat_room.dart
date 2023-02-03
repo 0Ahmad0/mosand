@@ -148,9 +148,12 @@ class _ChatRoomState extends State<ChatRoom> {
                 )),
                 IconButton(
                     onPressed: () {
-                      chatProvider.addMessage(context, idChat: chatProvider.chat.id,
-                          message: Message(textMessage: textController.text, senderId: profileProvider.user.id, receiveId: widget.name, sendingTime: DateTime.now()));
-                      textController.clear();
+                      if(textController.text.trim().isNotEmpty){
+                        chatProvider.addMessage(context, idChat: chatProvider.chat.id,
+                            message: Message(textMessage: textController.text, senderId: profileProvider.user.id, receiveId: widget.name, sendingTime: DateTime.now()));
+                        textController.clear();
+
+                      }
                     },
                     icon: Icon(
                       Icons.send,

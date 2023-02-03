@@ -144,7 +144,7 @@ class _HomeViewState extends State<HomeView> {
   secondPhase(BuildContext context){
     return
       (!homeController.checkDateDayLawyer(homeController.dateLawyer))?
-      SvgPicture.asset(AssetsManager.noDatesFoundIMG)
+      SvgPicture.asset(AssetsManager.noDatesFoundIMG,width: 30.w,height: 30.w,)
           :
       StatefulBuilder(builder: (_, setStateD)
     =>
@@ -217,7 +217,7 @@ class _HomeViewState extends State<HomeView> {
    buildDateLawyer(BuildContext context){
     return
       (homeController.mapTimeDayLawyer[homeController.selectDateController]['am'].length+homeController.mapTimeDayLawyer[homeController.selectDateController]['pm'].length<=0)?
-      SvgPicture.asset(AssetsManager.noTimeFoundIMG):
+      SvgPicture.asset(AssetsManager.noTimeFoundIMG,width: 30.w,height: 30.w,):
       StatefulBuilder(builder: (_, setStateT) =>
       ListBody(
       children: [

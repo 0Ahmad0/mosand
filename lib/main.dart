@@ -67,9 +67,9 @@ class MyApp extends StatelessWidget {
                   title: "Currency",
                   supportedLocales: context.supportedLocales,
                   localizationsDelegates: context.localizationDelegates,
-                  locale:const Locale('ar'),
+                  locale:Get.deviceLocale,
                   debugShowCheckedModeBanner: false,
-                  // theme: ThemeData.dark(),
+                   // theme: ThemeData.dark(),
                   theme: ThemeManager.myTheme,
                   // theme: getApplicationTheme(isDark: appProvider.darkTheme),
                   home:SplashView()

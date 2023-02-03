@@ -126,10 +126,8 @@ class _HomeViewState extends State<HomeView> {
                       Const.SHOWLOADINGINDECATOR();
                       if (snapshot.data!.docs!.length > 0) {
                         homeController.dateLawyer=DateLawyer.fromJson(snapshot.data!.docs![0]);
-                       // print(homeController.dateLawyer.toJson());
                       }
                       return secondPhase(context);
-                      /// }));
                     } else {
                       return const Text('Empty data');
                     }

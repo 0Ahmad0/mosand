@@ -19,6 +19,7 @@ class AuthProvider with ChangeNotifier{
   var phoneNumber = TextEditingController();
   var password = TextEditingController();
   var confirmPassword = TextEditingController();
+  List<String> listTypeUserWithActive=[AppConstants.collectionLawyer];
   models.User user= models.User(id: "id",uid: "uid", name: "name", email: "email", phoneNumber: "phoneNumber", password: "password",photoUrl: "photoUrl",typeUser: "typeUser",dateBirth: DateTime.now(),gender: "Male");
   signup(context) async{
     final profileProvider = Provider.of<ProfileProvider>(context,listen: false);
@@ -202,6 +203,9 @@ class AuthProvider with ChangeNotifier{
     var result;
     if(resultUser['status']){
       resultUser = await fetchUserByTypeUser(uid: resultUser['body']?.uid,typeUser: typeUser);
+      if(listTypeUserWithActive.contains(typeUser)&&!resultUser['body']['active'])
+        result=FirebaseFun.errorUser("Account not Active");
+      else
       result=await _baseLogin(context, resultUserAfterLog: resultUser);
     }else{
       result=resultUser;

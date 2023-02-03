@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import 'package:mosand/controller/provider/internship_provider.dart';
 import 'package:mosand/controller/provider/profile_provider.dart';
 import 'package:mosand/controller/utils/firebase.dart';
 import 'package:mosand/model/utils/consts_manager.dart';
+import 'package:mosand/translations/locale_keys.g.dart';
 import 'package:provider/provider.dart';
 import 'package:path/path.dart';
 import '../model/models.dart';
@@ -35,20 +37,22 @@ class NotificationController{
     listNotification.clear();
     if(profileProvider.user.typeUser.contains(AppConstants.collectionLawyer))
       processNotificationLawyer(context);
+    else if(profileProvider.user.typeUser.contains(AppConstants.collectionUser))
+      processNotificationUser(context);
   }
   processNotificationLawyer(BuildContext context){
     listNotification.clear();
     for(DateO dateO in dateOController.listDateProgress){
       if(!dateO.notificationLawyer){
         listNotification.add({
-          'message':'',
+          'message':'${tr(LocaleKeys.new_date_added)}',
           'dateO':dateO
         });
       }
       for(DateO dateO in dateOController.listDateUpcoming){
         if(!dateO.notificationLawyer){
           listNotification.add({
-            'message':'',
+            'message':'${tr(LocaleKeys.you_have_appointment_today)}',
             'dateO':dateO
           });
         }
@@ -60,10 +64,18 @@ class NotificationController{
       for(DateO dateO in dateOController.listDateUpcoming){
         if(!dateO.notificationUser){
           listNotification.add({
-            'message':'',
+            'message':'${tr(LocaleKeys.you_have_appointment_today)}',
             'dateO':dateO
           });
         }
       }
     }
+  deleteNotification(BuildContext context,DateO dateO) async {
+    ProfileProvider profileProvider= Provider.of<ProfileProvider>(context,listen: false);
+    if(profileProvider.user.typeUser.contains(AppConstants.collectionLawyer))
+      dateO.notificationLawyer=true;
+    else if(profileProvider.user.typeUser.contains(AppConstants.collectionUser))
+      dateO.notificationUser=true;
+    await dateOController.dateOProvider.updateDateO(context, dateO: dateO);
+  }
   }

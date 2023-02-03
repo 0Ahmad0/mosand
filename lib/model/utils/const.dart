@@ -43,8 +43,7 @@ class Const{
 
   static SHOWLOADINGINDECATOR(){
     return Center(
-      child: CircularProgressIndicator(
-      ),
+      child: CircularProgressIndicator(),
     );
   }
 

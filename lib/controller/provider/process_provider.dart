@@ -18,6 +18,11 @@ import '../../model/utils/local/storage.dart';
 class ProcessProvider with ChangeNotifier{
   Map<String,dynamic> cacheUser=Map<String,dynamic>();
 
+  fetchLocalNameUser({required String idUser}) {
+    //  print(cacheUser[idUser]);
+    if(cacheUser.containsKey(idUser)) return cacheUser[idUser];
+    return "......";
+  }
   fetchNameUser(context,{required String idUser}) async{
   //  print(cacheUser[idUser]);
     if(cacheUser.containsKey(idUser)) return cacheUser[idUser];

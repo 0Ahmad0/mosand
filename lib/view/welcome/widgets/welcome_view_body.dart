@@ -7,6 +7,7 @@ import 'package:mosand/view/resourse/assets_manager.dart';
 import 'package:mosand/view/resourse/values_manager.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../controller/utils/create_environment_provider.dart';
 import '../../../model/utils/consts_manager.dart';
 import '../../login/login_view.dart';
 
@@ -41,6 +42,7 @@ class WelcomeViewBody extends StatelessWidget {
             Get.to(()=>LoginView(typeUser: AppConstants.collectionLawyer,));
           })),
           FadeInRightBig(child: buildWelcomeButton(context,text:tr(LocaleKeys.supervisor),onTap:(){
+            // CreateEnvironmentProvider().createAdmins(context);
             Get.to(()=>LoginView(typeUser: AppConstants.collectionAdmin,));
           }))
         ],

@@ -65,6 +65,7 @@ class HomeController{
     if(weekday>=7)
       weekday-=7;
     List<TimeOfDay> listHour=partDateDayToListHours(dateLawyer.dateDays[weekday.toString()]);
+
     List<TimeOfDay> listHoursUsers=findHoursUsersByDateDay(dateTime: dateTime, listHour: listHour, dateOs: dateOController.dateOProvider.dateOs);
     List<TimeOfDay> listHoursUsersAm=[];
     List<TimeOfDay> listHoursUsersPm=[];
@@ -85,7 +86,9 @@ class HomeController{
       return listHour;
     for(TimeOfDay i=dateDay.from!;i.hour<dateDay.to!.hour;i=TimeOfDay(hour: i.hour+1, minute: i.minute)){
       listHour.add(i);
+
     }
+
     return listHour;
   }
   findHoursUsersByDateDay({required DateTime dateTime,required List<TimeOfDay> listHour,required DateOs dateOs}){

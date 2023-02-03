@@ -103,7 +103,11 @@ class LoginViewBody extends StatelessWidget {
                          text: tr(LocaleKeys.login),
                          onPressed: () async {
                            if (formKey.currentState!.validate()) {
-                            await authController.login(email: emailController.text, password: passwordController.text, typeUser: typeUser);
+                             final result = await authController.login(
+                                 context, email: emailController.text,
+                                 password: passwordController.text,
+                                 typeUser: typeUser);
+                             FocusManager.instance.primaryFocus!.unfocus();
                            }
                          }),
                    ),

@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:mosand/controller/provider/chat_provider.dart';
 import 'package:mosand/controller/provider/date_provider.dart';
 import 'package:mosand/controller/provider/process_provider.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,7 @@ import 'controller/provider/auth_provider.dart';
 import 'controller/provider/date_lawyer_provider.dart';
 import 'controller/provider/internship_provider.dart';
 import 'controller/provider/profile_provider.dart';
+import 'controller/utils/create_environment_provider.dart';
 import 'firebase_options.dart';
 import 'translations/codegen_loader.g.dart';
 Future<void> main()async{
@@ -55,6 +57,8 @@ class MyApp extends StatelessWidget {
       ListenableProvider<InternshipProvider>(create: (_)=>InternshipProvider()),
       ListenableProvider<ProcessProvider>(create: (_)=>ProcessProvider()),
       ListenableProvider<DateOProvider>(create: (_)=>DateOProvider()),
+      ListenableProvider<ChatProvider>(create: (_)=>ChatProvider()),
+      ListenableProvider<CreateEnvironmentProvider>(create: (_)=>CreateEnvironmentProvider()),
     ],
         child:
         Sizer(

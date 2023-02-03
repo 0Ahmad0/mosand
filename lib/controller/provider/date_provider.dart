@@ -22,7 +22,7 @@ class DateOProvider extends ChangeNotifier{
   updateDateO(context,{ required DateO dateO}) async {
     var result;
     result =await FirebaseFun.updateDateO(dateO: dateO);
-    Const.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()));
+   // Const.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()));
     return result;
   }
   deleteDateO(context,{ required DateO dateO}) async {

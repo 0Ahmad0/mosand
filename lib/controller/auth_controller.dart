@@ -15,7 +15,7 @@ class AuthController{
   AuthController({required this.context}){
     authProvider= Provider.of<AuthProvider>(context);
   }
-  login({required String email,required String password,required String typeUser}) async {
+  login(BuildContext context,{required String email,required String password,required String typeUser}) async {
     Const.LOADIG(context);
     authProvider.user.email=email;
     authProvider.user.password=password;
@@ -24,9 +24,9 @@ class AuthController{
     if(result['status'])
       Get.off(() => NavbarView(),
           transition: Transition.circularReveal);
-    FocusManager.instance.primaryFocus!.unfocus();
+
   }
-  signUp({required String fullName, String lawyerId="",required String gender,required DateTime dateBirth,required String email,required String password,required String phoneNumber,required String photoUrl,required String typeUser}) async {
+  signUp(BuildContext context,{required String fullName, String lawyerId="",required String gender,required DateTime dateBirth,required String email,required String password,required String phoneNumber,required String photoUrl,required String typeUser}) async {
     Const.LOADIG(context);
     authProvider.user=User(id: '', uid: '',
         name: fullName,
@@ -44,7 +44,7 @@ class AuthController{
       Get.off(() => NavbarView(),
           transition: Transition.circularReveal);
   }
-  sendPasswordResetEmail({required String email}) async {
+  sendPasswordResetEmail(BuildContext context,{required String email}) async {
     Const.LOADIG(context);
     final result =await authProvider.sendPasswordResetEmail(context, resetEmail: email);
     Navigator.of(context).pop();

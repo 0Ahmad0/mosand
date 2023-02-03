@@ -70,6 +70,7 @@ abstract class  LocaleKeys {
   static const add_office = 'add_office';
   static const type_here = 'type_here';
   static const lawyer = 'lawyer';
+  static const lawyer_accounts = 'lawyer_accounts';
   static const user = 'user';
   static const license = 'license';
   static const mosand = 'mosand';
@@ -135,6 +136,11 @@ abstract class  LocaleKeys {
   static const start_time_great_end_time = 'start_time_great_end_time';
   static const end_time_least_hour_greater = 'end_time_least_hour_greater';
   static const please_fill_all_fields = 'please_fill_all_fields';
+  static const new_date_added = 'new_date_added';
+  static const you_have_appointment_today = 'you_have_appointment_today';
+  static const loading = 'loading';
+  static const active = 'active';
+  static const non_active = 'non_active';
   static const toast = 'toast';
   static const toast_successfully_created = 'toast_successfully_created';
   static const toast_successfully_update = 'toast_successfully_update';
@@ -149,5 +155,6 @@ abstract class  LocaleKeys {
   static const toast_Bad_data_fetch = 'toast_Bad_data_fetch';
   static const toast_time_out = 'toast_time_out';
   static const toast_given_empty = 'toast_given_empty';
+  static const toast_account_not_active = 'toast_account_not_active';
 
 }

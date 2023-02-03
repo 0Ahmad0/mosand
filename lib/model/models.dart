@@ -34,6 +34,7 @@ class User {
   String description;
   String lawyerId;
   String gender;
+  bool active;
   DateTime dateBirth;
   List<String> tokens;
   User({
@@ -49,6 +50,7 @@ class User {
     required this.dateBirth,
     this.description = "",
     this.lawyerId = "",
+    this.active = false,
     this.tokens = const[],
   });
 
@@ -65,6 +67,7 @@ class User {
         photoUrl: json["photoUrl"],
         gender: json["gender"],
         lawyerId: json["lawyerId"],
+        active: json["active"],
         dateBirth: json["dateBirth"].toDate(),
        // tokens: json["tokens"],
         description: (json["description"] != null) ? json["description"] : "");
@@ -86,6 +89,7 @@ class User {
         'lawyerId': lawyerId,
         'photoUrl': photoUrl,
         'description': description,
+        'active': active,
         'tokens': tokens,
       };
 }
@@ -139,8 +143,9 @@ class DateDay {
 
   Map<String, dynamic> toJson() => {
     'id': id,
-    'from': (from==null)?from:DateTime.fromMillisecondsSinceEpoch(((from!.hour-3)*60+from!.minute)*60000),
-    'to': (to==null)?to:DateTime.fromMillisecondsSinceEpoch(((to!.hour-3)*60+to!.minute)*60000),
+    'from': (from==null)?from:DateTime(2000,1,1,from!.hour,from!.minute),
+   // 'from': (from==null)?from:DateTime.fromMillisecondsSinceEpoch(((from!.hour-3)*60+from!.minute)*60000),
+    'to': (to==null)?to:DateTime(2000,1,1,to!.hour,to!.minute),
   };
 }
 //dateLawyer
@@ -346,6 +351,200 @@ class DateOs {
     };
   }
 }
+//Message
+class Message {
+  String id;
+  // bool checkSend;
+  // int index;
+  String textMessage;
+  // int sizeFile;
+  // String url;
+  // String urlTempPhoto;
+  // String localUrl;
+  // String typeMessage;
+  String senderId;
+  String receiveId;
+  // String replayId;
+  DateTime sendingTime;
+  // List deleteUserMessage;
+  Message(
+      {this.id="",
+       // this.index=-1,
+        // this.sizeFile=0,
+        // this.checkSend=true,
+        required this.textMessage,
+        // this.url="",
+        // this.urlTempPhoto="",
+        // this.localUrl="",
+        // required this.replayId,
+        // required this.typeMessage,
+        required this.senderId,
+        required this.receiveId,
+        // required this.deleteUserMessage,
+        required this.sendingTime});
+  factory Message.fromJson( json){
+    // List<String> tempDeleteUserMessage = [];
+    // for(String user in json["deleteUserMessage"]){
+    //   tempDeleteUserMessage.add(user);
+    // }
+    // String tempUrl="";
+    // if(!json["typeMessage"].contains(ChatMessageType.text.name)){
+    //   tempUrl=json["url"];
+    // }
+    // String tempLocalUrl="";
+    // if(json.data().containsKey("localUrl")){
+    //   tempLocalUrl=json["localUrl"];
+    // }
+    // int tempSizeFile=0;
+    // if(json.data().containsKey("sizeFile")){
+    //   tempSizeFile=json["sizeFile"];
+    // }
+    // String tempUrlTempPhoto="";
+    // if(json.data().containsKey("urlTempPhoto")){
+    //   tempUrlTempPhoto=json["urlTempPhoto"];
+    // }
+    return Message(
+        // url: tempUrl,
+        // localUrl: tempLocalUrl,
+        textMessage: json["textMessage"],
+       // typeMessage: json["typeMessage"],
+        sendingTime: (json["sendingTime"].runtimeType.toString().contains('DateTime'))?json["sendingTime"]:json["sendingTime"].toDate(),
+        senderId: json["senderId"],
+        receiveId: json["receiveId"],
+        // deleteUserMessage: tempDeleteUserMessage,
+        // urlTempPhoto: tempUrlTempPhoto,
+        // sizeFile: tempSizeFile,
+       // replayId: json["replayId"]
+    );
+  }
+  Map<String,dynamic> toJson() {
+    // List tempDeleteUserMessage = [];
+    // for(String user in deleteUserMessage){
+    //   tempDeleteUserMessage.add(user);
+    // }
+    return {
+      'textMessage': textMessage,
+    //  'typeMessage': typeMessage,
+      'senderId': senderId,
+      'receiveId': receiveId,
+      'sendingTime': sendingTime,
+      // 'deleteUserMessage': tempDeleteUserMessage,
+      // 'urlTempPhoto': urlTempPhoto,
+      // 'sizeFile': sizeFile,
+      // 'replayId': replayId,
+      // 'url': url,
+      // 'localUrl': localUrl,
+    };
+  }
+  factory Message.init(){
+    return Message(textMessage: '', senderId: '', receiveId: '', sendingTime: DateTime.now());
+  }
+}
+//Messages
+class Messages {
+  List<Message> listMessage;
+
+
+
+  Messages({required this.listMessage});
+
+  factory Messages.fromJson(json) {
+    List<Message> temp = [];
+    for (int i = 1; i < json.length; i++) {
+      Message tempElement = Message.fromJson(json[i]);
+      tempElement.id = json[i].id;
+      temp.add(tempElement);
+    }
+    return Messages(listMessage: temp);
+  }
+
+  Map<String, dynamic> toJson() {
+    List<Map<String, dynamic>> temp = [];
+    for (var element in listMessage) {
+      temp.add(element.toJson());
+    }
+    return {
+      'listMessage': temp,
+    };
+  }
+}
+//Chat
+class Chat {
+  String id;
+  List<Message> messages;
+  List<String> listIdUser;
+  DateTime date;
+
+  Chat({
+     this.id='',
+    required this.messages,
+     required this.listIdUser,
+    required this.date,
+  });
+  factory Chat.fromJson( json){
+    List<Message> listTemp = [];
+    // for(int i=1;i<json['messages'].length;i++){
+    //   Message tempMessage=Message.fromJson(json['messages'][i]);
+    //   tempMessage.id=json['messages'][i].id;
+    //   listTemp.add(tempMessage);
+    // }
+    List<String> listTemp2=[];
+    for(String temp in json['listIdUser'])
+       listTemp2.add(temp);
+    return Chat(
+        id: json['id'],
+        listIdUser: listTemp2,
+        messages: listTemp,//json["messages"],
+        date: json["date"].toDate(),
+    );
+  }
+
+  Map<String,dynamic> toJson(){
+    List<Map<String,dynamic>> listTemp = [];
+    for(Message message in messages){
+      listTemp.add(message.toJson());
+    }
+    return {
+      'id':id,
+      'date':date,
+     // 'messages':listTemp,
+      'listIdUser':listIdUser,
+    };
+  }
+  factory Chat.init(){
+    return Chat(messages: [], listIdUser: [], date: DateTime.now());
+  }
+}
+
+//Chats
+class Chats {
+  List<Chat> listChat;
+
+  //DateTime date;
+
+  Chats({required this.listChat});
+
+  factory Chats.fromJson(json) {
+    List<Chat> temp = [];
+    for (int i = 0; i < json.length; i++) {
+      Chat tempElement = Chat.fromJson(json[i]);
+      tempElement.id = json[i].id;
+      temp.add(tempElement);
+    }
+    return Chats(listChat: temp);
+  }
+
+  Map<String, dynamic> toJson() {
+    List<Map<String, dynamic>> temp = [];
+    for (var element in listChat) {
+      temp.add(element.toJson());
+    }
+    return {
+      'listChat': temp,
+    };
+  }
+}
+
 
 /*
 flutter pub run easy_localization:generate -S "assets/translations/" -O "lib/translations"

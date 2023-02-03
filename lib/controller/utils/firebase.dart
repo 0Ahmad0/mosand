@@ -246,6 +246,59 @@ class FirebaseFun{
         .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
     return result;
   }
+  //Chat
+  static addChat( {required model.Chat chat}) async {
+    final result= await FirebaseFirestore.instance.collection(AppConstants.collectionChat).add(
+        chat.toJson()
+    ).then(onValueAddChat).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static updateChat( {required model.Chat chat}) async {
+    final result= await FirebaseFirestore.instance.collection(AppConstants.collectionChat).doc(
+        chat.id
+    ).update(chat.toJson()).then(onValueUpdateChat).catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static fetchChatsByIdUser({required List listIdUser})  async {
+    final result=await FirebaseFirestore.instance.collection(AppConstants.collectionChat)
+        .where('listIdUser',arrayContains: listIdUser)
+        .get()
+        .then((onValueFetchChats))
+        .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+
+
+  static addMessage( {required model.Message message,required String idChat}) async {
+    final result =await FirebaseFirestore.instance
+        .collection(AppConstants.collectionChat)
+        .doc(idChat)
+        .collection(AppConstants.collectionMessage).add(
+        message.toJson()
+    ).then(onValueAddMessage)
+        .catchError(onError);
+    return result;
+  }
+  static deleteMessage( {required model.Message message,required String idChat}) async {
+    final result =await FirebaseFirestore.instance
+        .collection(AppConstants.collectionChat)
+        .doc(idChat)
+        .collection(AppConstants.collectionMessage).doc(
+        message.id
+    ).delete().then(onValueDeleteMessage)
+        .catchError(onError);
+    return result;
+  }
+  static fetchLastMessage({required String idChat})  async {
+    final result=await FirebaseFirestore.instance.collection(AppConstants.collectionChat)
+    .doc(idChat).collection(AppConstants.collectionMessage).orderBy('sendingTime',descending: true).get()
+        .then((onValueFetchLastMessage))
+        .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+
+
+
 
   static Future<Map<String,dynamic>>  onError(error) async {
     print(false);
@@ -447,6 +500,57 @@ class FirebaseFun{
     };
   }
 
+  static Future<Map<String,dynamic>>onValueAddChat(value) async{
+    return {
+      'status':true,
+      'message':'Chat successfully add',
+      'body':{'id':value.id}
+    };
+  }
+  static Future<Map<String,dynamic>>onValueUpdateChat(value) async{
+    return {
+      'status':true,
+      'message':'Chat successfully update',
+      'body':{}
+    };
+  }
+  static Future<Map<String,dynamic>> onValueFetchChats(value) async{
+    // print(true);
+    //print("Chats count : ${value.docs.length}");
+
+    return {
+      'status':true,
+      'message':'Chats successfully fetch',
+      'body':value.docs
+    };
+  }
+  static Future<Map<String,dynamic>>onValueAddMessage(value) async{
+    return {
+      'status':true,
+      'message':'Message successfully add',
+      'body':{}
+    };
+  }
+  static Future<Map<String,dynamic>>onValueDeleteMessage(value) async{
+    return {
+      'status':true,
+      'message':'Message successfully delete',
+      'body':{}
+    };
+  }
+  static Future<Map<String,dynamic>> onValueFetchLastMessage(value) async{
+    // print(true);
+    //print("Chats count : ${value.docs.length}");
+
+    return {
+      'status':true,
+      'message':'Last message successfully fetch',
+      'body':value.docs
+    };
+  }
+
+
+
   static String findTextToast(String text){
      if(text.contains("Password should be at least 6 characters")){
        return tr(LocaleKeys.toast_short_password);
@@ -486,6 +590,9 @@ class FirebaseFun{
      }
      else if(text.contains("Account successfully logged")){
        return tr(LocaleKeys.toast);
+     }
+     else if(text.contains("Account not Active")){
+       return tr(LocaleKeys.toast_account_not_active);
      }
 
      return text;

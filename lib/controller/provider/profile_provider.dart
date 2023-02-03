@@ -59,7 +59,9 @@ class ProfileProvider with ChangeNotifier{
      Const.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()));
      return result;
    }
-
+   checkMeByIdUSer({required String idUser}){
+    return (user.id.contains(idUser))?true:false;
+   }
    Future uploadImage(context,XFile image) async {
      //Const.LOADIG(context);
      var url=await FirebaseFun.uploadImage(image: image,folder: "profileImage");

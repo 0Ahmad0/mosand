@@ -68,6 +68,7 @@
   "add_office": "إضافة مكتب تحويل",
   "type_here": "اكتب هنا",
   "lawyer": "محامي",
+  "lawyer_accounts": "حسابات المحامين",
   "user": "مستخدم",
   "license": "رقم الرخصة",
   "mosand": "مساند",
@@ -134,8 +135,13 @@
   "start_time_great_end_time": "وقت البداية أكبر من وقت النهاية",
   "end_time_least_hour_greater": "ضع وقت النهاية على الاقل اكبر بساعة",
   "please_fill_all_fields": "رجاءً املأ جميع الحقول",
+  "new_date_added": "تم إضافة موعد جديد",
+  "you_have_appointment_today": "لديك اليوم موعد",
+  "loading": "جاري التحميل ...",
 
 
+  "active": "نشط",
+  "non_active": "غير نشط",
   "toast": "",
   "toast_successfully_created": "تم إنشاء الحساب بنجاح",
   "toast_successfully_update": "تم تحديث المعلومات بنجاح",
@@ -149,5 +155,6 @@
   "toast_account_invalid":"الحساب غير صحيح",
   "toast_Bad_data_fetch":"خطأ داخلي: جلب سيء للبيانات",
   "toast_time_out":"خطأ في الاتصال",
-  "toast_given_empty":"القيمة المعطاء فارغة"
+  "toast_given_empty":"القيمة المعطاء فارغة",
+  "toast_account_not_active": "الحساب غير نشط"
 }

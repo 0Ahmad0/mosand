@@ -23,7 +23,7 @@ class AddDateView extends StatefulWidget {
 }
 
 class _AddDateViewState extends State<AddDateView> {
-  final _currentDate = DateTime.now();
+  final _currentDate = DateTime(2023,1,29);
   late DateLawyerController dateLawyerController;
   bool checkUpdate=false;
   int _currentIndex = 0;

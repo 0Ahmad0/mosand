@@ -252,6 +252,7 @@ class SignupViewBody extends StatelessWidget {
                                 onPressed: () async {
                                   if (formKey.currentState!.validate()) {
                                    await authController.signUp(
+                                     context,
                                        fullName: nameController.text, gender: genderController.text,
                                         dateBirth: DateFormat.yMd().parse(dateOfBirthController.text),
                                         email: emailController.text, password: passwordController.text,

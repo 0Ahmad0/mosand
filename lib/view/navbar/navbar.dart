@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mosand/model/utils/consts_manager.dart';
+import 'package:mosand/view/admin/show_accounts/show_accounts_view.dart';
 import 'package:provider/provider.dart';
 import '../../controller/provider/profile_provider.dart';
 import '../my_dates/my_dates_view.dart';
@@ -33,6 +34,7 @@ class _NavbarViewState extends State<NavbarView> {
           "icon": Icons.home,
           "screen": HomeView(),
         },);
+    if([AppConstants.collectionLawyer,AppConstants.collectionUser].contains(profileProvider.user.typeUser))
     _screens.addAll( [
       {
         "title": tr(LocaleKeys.my_dates),
@@ -50,8 +52,15 @@ class _NavbarViewState extends State<NavbarView> {
         "screen": NotificationView()
       },
     ]);
+    if([AppConstants.collectionAdmin].contains(profileProvider.user.typeUser))
+      _screens.add(
+        {
+          "title": tr(LocaleKeys.lawyer_accounts),
+          "icon": Icons.group,
+          "screen": ShowAccountsView(),
+        },);
 
-    return Scaffold(
+      return Scaffold(
       drawer: Drawer(
         child: BuildDrawer(),
     ),

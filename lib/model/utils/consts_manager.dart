@@ -35,6 +35,8 @@ class AppConstants {
   static String collectionDateLawyer = "DateLawyer";
   static String collectionInternship = "Internship";
   static String collectionDateO = "DateO";
+  static String collectionChat = "Chat";
+  static String collectionMessage = "Message";
 
 
 

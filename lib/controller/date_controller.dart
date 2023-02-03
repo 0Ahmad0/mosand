@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mosand/controller/provider/auth_provider.dart';
+import 'package:mosand/controller/provider/chat_provider.dart';
 import 'package:mosand/controller/provider/date_provider.dart';
 import 'package:mosand/controller/provider/internship_provider.dart';
 import 'package:mosand/controller/provider/profile_provider.dart';
@@ -31,7 +32,11 @@ class DateOController{
   }
   addDateO(context,{ required DateO dateO}) async {
     Const.LOADIG(context);
-    var result= await dateOProvider.addDateO(context,dateO: dateO);
+    var result=await ChatProvider().createChat(context, listIdUser:[ dateO.idLawyer,dateO.idUser]);
+    if(result['status'])
+     result= await dateOProvider.addDateO(context,dateO: dateO);
+    else
+      Const.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()));
     Get.back();
     return result;
     // if(result['status'])
@@ -83,9 +88,9 @@ class DateOController{
       else if(dateOProvider.compareDateTimeByYMD(dateTime1: dateO.dateTime, dateTime2: DateTime.now())==0)
        {
          if(dateOProvider.compareTimeDayByHM(timeOfDay1: TimeOfDay(hour: dateO.dateTime.hour+1, minute: dateO.dateTime.minute), timeOfDay2: TimeOfDay.now())>0)
-           listDateComplete.add(dateO);
-         else
            listDateUpcoming.add(dateO);
+         else
+           listDateComplete.add(dateO);
        }
           else if(dateOProvider.compareDateTimeByYMD(dateTime1: dateO.dateTime, dateTime2: DateTime.now())<0)
         listDateComplete.add(dateO);

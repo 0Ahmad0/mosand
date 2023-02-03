@@ -1,35 +1,76 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mosand/controller/date_controller.dart';
+import 'package:mosand/controller/notification_controller.dart';
 import 'package:mosand/translations/locale_keys.g.dart';
 import 'package:mosand/view/manager/widgets/ShadowContainer.dart';
 import 'package:mosand/view/resourse/assets_manager.dart';
 import 'package:mosand/view/resourse/values_manager.dart';
 import 'package:sizer/sizer.dart';
 
-class NotificationView extends StatelessWidget {
-  const NotificationView({Key? key}) : super(key: key);
+import '../../model/models.dart';
+import '../../model/utils/const.dart';
 
+class NotificationView extends StatelessWidget {
+   NotificationView({Key? key}) : super(key: key);
+  late NotificationController notificationController;
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        padding: const EdgeInsets.all(AppPadding.p10),
-        itemBuilder: (context, index) => BuildNotification(
-              index: index,
-              notificationName: 'notification',
-            ),
-        itemCount: 50);
+    notificationController=NotificationController(context: context);
+    return StreamBuilder<QuerySnapshot>(
+      //prints the messages to the screen0
+        stream: notificationController.dateOController.fetchDateOsByUserOrLawyerStream(context),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return
+              Const.SHOWLOADINGINDECATOR();
+
+          }
+          else if (snapshot.connectionState ==
+              ConnectionState.active) {
+            if (snapshot.hasError) {
+              return const Text('Error');
+            } else if (snapshot.hasData) {
+              Const.SHOWLOADINGINDECATOR();
+              if(snapshot.data!.docs.length>0){
+                notificationController.dateOController.dateOProvider.dateOs=DateOs.fromJson(snapshot.data!.docs);
+                notificationController.processNotification(context, notificationController.dateOController.dateOProvider.dateOs.listDateO);
+              }
+              return (notificationController.listNotification.length>0)?buildNotificationViews(context,notificationController):SvgPicture.asset(AssetsManager.noNotificationIMG);
+              /// }));
+            } else {
+              return const Text('Empty data');
+            }
+          }
+          else {
+            return Text('State: ${snapshot.connectionState}');
+          }
+        });
   }
+   buildNotificationViews(BuildContext context,NotificationController notificationController){
+     return ListView.builder(
+         padding: const EdgeInsets.all(AppPadding.p10),
+         itemBuilder: (context, index) => BuildNotification(
+             notificationController: notificationController,
+           index: index,
+           notificationName: notificationController.listNotification[index]['message'],
+           dateO:notificationController.listNotification[index]['dateO']
+         ),
+         itemCount: notificationController.listNotification.length);
+   }
 }
 
 class BuildNotification extends StatelessWidget {
   final int index;
   final String notificationName;
-
+  final DateO dateO;
+  final NotificationController notificationController;
   const BuildNotification(
-      {super.key, required this.index, required this.notificationName});
+      {super.key, required this.index,required this.dateO, required this.notificationName, required this.notificationController});
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +94,11 @@ class BuildNotification extends StatelessWidget {
                   size: 25.sp,
                 ),
                 title: Text(notificationName),
+                subtitle: Text('${DateFormat('MM/dd/yyyy hh:mm a').format(dateO.dateTime)}'),
                 trailing: IconButton(
-                  onPressed: (){},
+                  onPressed: () async {
+                   await notificationController.deleteNotification(context, dateO);
+                  },
                   icon: Icon(Icons.delete),
                 ),
               )

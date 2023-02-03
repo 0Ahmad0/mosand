@@ -59,8 +59,6 @@ class DateLawyerController{
   TimeOfDay stringToTimeOfDay(String time) {
     // final format = DateFormat.jm(); //"6:00 AM"
     // return TimeOfDay.fromDateTime(format.parse(tod));
-
-
     int hh = 0;
     if (time.toLowerCase().endsWith('pm')||time.endsWith('م')) hh = 12;
     time = time.split(' ')[0];

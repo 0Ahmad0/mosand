@@ -84,6 +84,7 @@ class CodegenLoader extends AssetLoader{
   "add_office": "إضافة مكتب تحويل",
   "type_here": "اكتب هنا",
   "lawyer": "محامي",
+  "lawyer_accounts": "حسابات المحامين",
   "user": "مستخدم",
   "license": "رقم الرخصة",
   "mosand": "مساند",
@@ -149,6 +150,11 @@ class CodegenLoader extends AssetLoader{
   "start_time_great_end_time": "وقت البداية أكبر من وقت النهاية",
   "end_time_least_hour_greater": "ضع وقت النهاية على الاقل اكبر بساعة",
   "please_fill_all_fields": "رجاءً املأ جميع الحقول",
+  "new_date_added": "تم إضافة موعد جديد",
+  "you_have_appointment_today": "لديك اليوم موعد",
+  "loading": "جاري التحميل ...",
+  "active": "نشط",
+  "non_active": "غير نشط",
   "toast": "",
   "toast_successfully_created": "تم إنشاء الحساب بنجاح",
   "toast_successfully_update": "تم تحديث المعلومات بنجاح",
@@ -162,7 +168,8 @@ class CodegenLoader extends AssetLoader{
   "toast_account_invalid": "الحساب غير صحيح",
   "toast_Bad_data_fetch": "خطأ داخلي: جلب سيء للبيانات",
   "toast_time_out": "خطأ في الاتصال",
-  "toast_given_empty": "القيمة المعطاء فارغة"
+  "toast_given_empty": "القيمة المعطاء فارغة",
+  "toast_account_not_active": "الحساب غير نشط"
 };
 static const Map<String,dynamic> en = {
   "waitr": "Waitr",
@@ -234,6 +241,7 @@ static const Map<String,dynamic> en = {
   "add_office": "Add office",
   "type_here": "Type here",
   "lawyer": "Lawyer",
+  "lawyer_accounts": "Lawyer accounts",
   "user": "User",
   "license": "Lawyer id",
   "mosand": "Mosand",
@@ -299,6 +307,11 @@ static const Map<String,dynamic> en = {
   "start_time_great_end_time": "The start time is greater than the end time",
   "end_time_least_hour_greater": "Set the end time to be at least an hour greater than",
   "please_fill_all_fields": "Please fill in all fields",
+  "new_date_added": "A new date has been added",
+  "you_have_appointment_today": "You have an appointment today",
+  "loading": "Loading ...",
+  "active": "Active",
+  "non_active": "Non Active",
   "toast": "",
   "toast_successfully_created": "Account successfully created",
   "toast_successfully_update": "Account successfully update",
@@ -312,7 +325,8 @@ static const Map<String,dynamic> en = {
   "toast_account_invalid": "Account is invalid",
   "toast_Bad_data_fetch": "Internal Error: Bad data fetch",
   "toast_time_out": "time out",
-  "toast_given_empty": "Given String is empty or null"
+  "toast_given_empty": "Given String is empty or null",
+  "toast_account_not_active": "Account not Active"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

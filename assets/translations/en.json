@@ -68,6 +68,7 @@
   "add_office": "Add office",
   "type_here": "Type here",
   "lawyer": "Lawyer",
+  "lawyer_accounts": "Lawyer accounts",
   "user": "User",
   "license": "Lawyer id",
   "mosand": "Mosand",
@@ -134,7 +135,13 @@
   "start_time_great_end_time": "The start time is greater than the end time",
   "end_time_least_hour_greater": "Set the end time to be at least an hour greater than",
   "please_fill_all_fields": "Please fill in all fields",
+  "new_date_added": "A new date has been added",
+  "you_have_appointment_today": "You have an appointment today",
+  "loading": "Loading ...",
 
+
+  "active": "Active",
+  "non_active": "Non Active",
   "toast": "",
   "toast_successfully_created": "Account successfully created",
   "toast_successfully_update": "Account successfully update",
@@ -148,7 +155,8 @@
   "toast_account_invalid":"Account is invalid",
   "toast_Bad_data_fetch":"Internal Error: Bad data fetch",
   "toast_time_out":"time out",
-  "toast_given_empty":"Given String is empty or null"
+  "toast_given_empty":"Given String is empty or null",
+  "toast_account_not_active": "Account not Active"
 
 
 }

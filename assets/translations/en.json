@@ -137,11 +137,13 @@
   "please_fill_all_fields": "Please fill in all fields",
   "new_date_added": "A new date has been added",
   "you_have_appointment_today": "You have an appointment today",
+
+
   "loading": "Loading ...",
-
-
   "active": "Active",
   "non_active": "Non Active",
+
+
   "toast": "",
   "toast_successfully_created": "Account successfully created",
   "toast_successfully_update": "Account successfully update",

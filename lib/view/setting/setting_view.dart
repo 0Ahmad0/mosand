@@ -137,7 +137,7 @@ class SettingView extends StatelessWidget {
                                 fontSize: 15.sp),
                           ),
                           subtitle: Text(
-                            Advance.theme
+                            value.isDark
                                 ? tr(LocaleKeys.dark_mode)
                                 : tr(LocaleKeys.light_mode),
                             style: getLightStyle(
@@ -154,12 +154,12 @@ class SettingView extends StatelessWidget {
                             controller: c1,
                             onStartIconPress: () {
                              value.isDark = !value.isDark;
-
+                             value.notifyListeners();
                               return false;
                             },
                             onEndIconPress: () {
                               value.isDark = !value.isDark;
-
+                              value.notifyListeners();
 
                               return true;
                               // appModel.darkTheme = !appModel.darkTheme;

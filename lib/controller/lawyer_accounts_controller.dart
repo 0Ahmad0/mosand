@@ -39,4 +39,15 @@ class LawyerAccountsController{
     lawyers.users.clear();
     return FirebaseFirestore.instance.collection(AppConstants.collectionLawyer).snapshots();
   }
+   changeStateUser(BuildContext context, {required User user})  async {
+    user.active=!user.active;
+   // Const.LOADIG(context);
+     final result=await FirebaseFun.updateUser(user: user);
+    //Get.back();
+     if(!result['status'])
+       Const.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()));
+
+     return result;
+   }
+
 }

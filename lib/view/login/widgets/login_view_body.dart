@@ -159,8 +159,8 @@ class LoginViewBody extends StatelessWidget {
               ButtonApp(
                   textColor: Theme.of(context).textTheme.bodyMedium!.color,
                   text: tr(LocaleKeys.done),
-                  onPressed: () {
-                    Get.back();
+                  onPressed: () async {
+                   await authController.sendPasswordResetEmail(context, email: forgetPasswordController.text);
                   })
             ],
           ),

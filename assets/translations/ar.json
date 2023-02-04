@@ -137,11 +137,12 @@
   "please_fill_all_fields": "رجاءً املأ جميع الحقول",
   "new_date_added": "تم إضافة موعد جديد",
   "you_have_appointment_today": "لديك اليوم موعد",
+
   "loading": "جاري التحميل ...",
-
-
   "active": "نشط",
   "non_active": "غير نشط",
+
+
   "toast": "",
   "toast_successfully_created": "تم إنشاء الحساب بنجاح",
   "toast_successfully_update": "تم تحديث المعلومات بنجاح",

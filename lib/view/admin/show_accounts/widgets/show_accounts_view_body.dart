@@ -93,7 +93,9 @@ class BuildShowAccountItem extends StatelessWidget {
 
             trailing: Icon(Icons.circle_rounded,color: !lawyer.active?ColorManager.error:ColorManager.success,),
           ),
-          ButtonApp(text: 'text', onPressed: (){})
+          ButtonApp(text: 'text', onPressed: () async {
+            await LawyerAccountsController().changeStateUser(context, user: lawyer);
+          })
         ],
       ),
     );

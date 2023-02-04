@@ -70,13 +70,13 @@ class MyApp extends StatelessWidget {
                 child: Consumer<ThemeProvider>(
                     builder: (context,value,child) {
                       return GetMaterialApp(
-                          title: "Currency",
+                          title: "Mosand",
                           supportedLocales: context.supportedLocales,
                           localizationsDelegates: context.localizationDelegates,
                           locale:Get.deviceLocale,
                           debugShowCheckedModeBanner: false,
                           // theme: ThemeData.dark(),
-                          theme:value.isDark? ThemeManager.myTheme:ThemeData.dark(),
+                          theme:!value.isDark? ThemeManager.myTheme:ThemeData.dark(),
                           // theme: getApplicationTheme(isDark: appProvider.darkTheme),
                           home:SplashView()
                       );

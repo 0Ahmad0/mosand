@@ -17,6 +17,7 @@ import 'controller/provider/auth_provider.dart';
 import 'controller/provider/date_lawyer_provider.dart';
 import 'controller/provider/internship_provider.dart';
 import 'controller/provider/profile_provider.dart';
+import 'controller/provider/theme_provider.dart';
 import 'controller/utils/create_environment_provider.dart';
 import 'firebase_options.dart';
 import 'translations/codegen_loader.g.dart';
@@ -58,21 +59,30 @@ class MyApp extends StatelessWidget {
       ListenableProvider<ProcessProvider>(create: (_)=>ProcessProvider()),
       ListenableProvider<DateOProvider>(create: (_)=>DateOProvider()),
       ListenableProvider<ChatProvider>(create: (_)=>ChatProvider()),
+      ListenableProvider<ThemeProvider>(create: (_)=>ThemeProvider()),
       ListenableProvider<CreateEnvironmentProvider>(create: (_)=>CreateEnvironmentProvider()),
     ],
         child:
         Sizer(
             builder: (context, orientation, deviceType) {
-              return GetMaterialApp(
-                  title: "Currency",
-                  supportedLocales: context.supportedLocales,
-                  localizationsDelegates: context.localizationDelegates,
-                  locale:Get.deviceLocale,
-                  debugShowCheckedModeBanner: false,
-                   // theme: ThemeData.dark(),
-                  theme: ThemeManager.myTheme,
-                  // theme: getApplicationTheme(isDark: appProvider.darkTheme),
-                  home:SplashView()
+              return ChangeNotifierProvider<ThemeProvider>.value(
+                value: Provider.of<ThemeProvider>(context),
+                child: Consumer<ThemeProvider>(
+                    builder: (context,value,child) {
+                      return GetMaterialApp(
+                          title: "Currency",
+                          supportedLocales: context.supportedLocales,
+                          localizationsDelegates: context.localizationDelegates,
+                          locale:Get.deviceLocale,
+                          debugShowCheckedModeBanner: false,
+                          // theme: ThemeData.dark(),
+                          theme:value.isDark? ThemeManager.myTheme:ThemeData.dark(),
+                          // theme: getApplicationTheme(isDark: appProvider.darkTheme),
+                          home:SplashView()
+                      );
+                    }
+
+                ),
               );
             }
         ));

@@ -160,7 +160,6 @@ class SettingView extends StatelessWidget {
                             onEndIconPress: () {
                               value.isDark = !value.isDark;
                               value.notifyListeners();
-
                               return true;
                               // appModel.darkTheme = !appModel.darkTheme;
                               // return appModel.darkTheme;

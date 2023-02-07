@@ -32,10 +32,9 @@ class DateOController{
   }
   addDateO(context,{ required DateO dateO}) async {
     Const.LOADIG(context);
-    var result=await ChatProvider().createChat(context, listIdUser:[ dateO.idLawyer,dateO.idUser]);
-    if(result['status'])
+    var result;
      result= await dateOProvider.addDateO(context,dateO: dateO);
-    else
+    if(!result['status'])
       Const.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()));
     Get.back();
     return result;

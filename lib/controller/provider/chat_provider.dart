@@ -37,20 +37,7 @@ class ChatProvider with ChangeNotifier{
    }
    return result;
  }
- static fetchChatsByListIdUser({required List listIdUser})  async {
-   final database = await FirebaseFirestore.instance.collection(AppConstants.collectionChat);
-   Query<Map<String, dynamic>> ref = database;
 
-   listIdUser.forEach( (val) => {
-     ref = database.where('listIdUser' ,arrayContains: val)
-   });
-   final result=
-   ref
-       .get()
-       .then((onValueFetchChats))
-       .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
-   return result;
- }
 
  fetchLastMessage(context,{required String idChat}) async{
    final result=await FirebaseFun.fetchLastMessage(idChat: idChat);

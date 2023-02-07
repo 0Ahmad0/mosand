@@ -36,9 +36,15 @@ class _ShowPostsViewState extends State<ShowPostsView> {
    }
 
    getListInternshipsFun() async {
+    if(AppConstants.collectionLawyer.contains(profileProvider.user.typeUser))
      getListInternships = FirebaseFirestore.instance
          .collection(AppConstants.collectionInternship)
+     .where('idLawyer',isEqualTo: profileProvider.user.id)
          .snapshots();
+    else
+      getListInternships = FirebaseFirestore.instance
+          .collection(AppConstants.collectionInternship)
+          .snapshots();
      return getListInternships;
    }
   @override

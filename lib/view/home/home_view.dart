@@ -3,13 +3,17 @@ import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:mosand/controller/provider/chat_provider.dart';
+import 'package:mosand/controller/utils/firebase.dart';
 import 'package:mosand/model/models.dart';
 import 'package:mosand/model/utils/consts_manager.dart';
 import 'package:mosand/view/all_lawyers/all_lawyers_view.dart';
 import 'package:mosand/view/manager/widgets/button_app.dart';
 import 'package:mosand/view/resourse/color_manager.dart';
 import 'package:mosand/view/resourse/assets_manager.dart';
+import 'package:provider/provider.dart';
 import '../../controller/home_controller.dart';
+import '../../controller/provider/profile_provider.dart';
 import '../../model/utils/const.dart';
 import '/view/manager/widgets/textformfiled_app.dart';
 import '/view/resourse/style_manager.dart';
@@ -95,10 +99,12 @@ class _HomeViewState extends State<HomeView> {
             controller: homeController.idLawyerController,
             readOnly: true,
             onTap: (){
-              Get.to(()=>AllLawyersView())!.then((value) {
+              Get.to(()=>AllLawyersView())!.then((value) async {
                 if(value!=null){
                   homeController.lawyer=value;
                   homeController.idLawyerController.text=homeController.lawyer.name;
+                  // var result =await ChatProvider().createChat(context,listIdUser:['mxa8VkmODNYM0QgEUiSq',homeController.lawyer.id]);
+                  // print(result);
                   setStateL((){});
                 }
 

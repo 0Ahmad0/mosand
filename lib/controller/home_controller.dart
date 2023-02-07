@@ -10,6 +10,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mosand/controller/date_controller.dart';
 import 'package:mosand/controller/provider/auth_provider.dart';
+import 'package:mosand/controller/provider/chat_provider.dart';
 import 'package:mosand/controller/provider/date_provider.dart';
 import 'package:mosand/controller/provider/internship_provider.dart';
 import 'package:mosand/controller/provider/profile_provider.dart';
@@ -114,6 +115,7 @@ class HomeController{
   }
   addDateO(BuildContext context) async {
     final ProfileProvider profileProvider= Provider.of<ProfileProvider>(context,listen: false);
+
     var result;
     if(selectTimeDayController!=null
         &&subjectConsultationController.text!=''
@@ -122,8 +124,9 @@ class HomeController{
           idLawyer: lawyer.id, specialtyLawyer: specialtyLawyerController.text,
           subjectConsultation: subjectConsultationController.text,
           dateTime:DateTime(selectDateController.year,selectDateController.month,selectDateController.day,selectTimeDayController!.hour,selectTimeDayController!.minute) );
+      result=await ChatProvider().createChat(context, listIdUser:[profileProvider.user.id,dateO.idLawyer]);
 
-     result =await dateOController.addDateO(context, dateO: dateO);
+      result =await dateOController.addDateO(context, dateO: dateO);
 
     }else{
       Const.TOAST(context,textToast: tr(LocaleKeys.please_fill_all_fields));

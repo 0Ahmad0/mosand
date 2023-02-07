@@ -248,7 +248,7 @@ class SignupViewBody extends StatelessWidget {
                           ),
                           FadeInLeftBig(
                             child: ButtonApp(
-                                text: tr(LocaleKeys.gender),
+                                text: tr(LocaleKeys.signup),
                                 onPressed: () async {
                                   if (formKey.currentState!.validate()) {
                                    await authController.signUp(

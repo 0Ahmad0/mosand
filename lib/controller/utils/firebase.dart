@@ -156,6 +156,27 @@ class FirebaseFun{
         .then((onValueFetchUsers))
         .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
     return result;
+  }static fetchUsersByTypeUserAndIdUser(String typeUser,String idUser)  async {
+    final result=await FirebaseFirestore.instance.collection(typeUser)
+    .where('idUser',isEqualTo: idUser)
+        .get()
+        .then((onValueFetchUsers))
+        .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
+  static fetchChatsByListIdUser({required List listIdUser})  async {
+    final database = await FirebaseFirestore.instance.collection(AppConstants.collectionChat);
+    Query<Map<String, dynamic>> ref = database;
+
+    listIdUser.forEach( (val) => {
+      ref = database.where('listIdUser' ,arrayContains: val)
+    });
+    final result=
+    ref
+        .get()
+        .then((onValueFetchChats))
+        .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
   }
   static sendPasswordResetEmail( {required String email})  async {
     final result=await FirebaseAuth.instance.sendPasswordResetEmail(

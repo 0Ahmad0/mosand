@@ -108,6 +108,8 @@ class _ProfileViewState extends State<ProfileViewBody> {
                         child: image == null
 
                             ?
+                        ClipOval(
+                          child:
                         CacheNetworkImage(
                           photoUrl: '${widget.profileProvider.user.photoUrl}',
                           width: 5.w,
@@ -126,7 +128,7 @@ class _ProfileViewState extends State<ProfileViewBody> {
                             backgroundColor: ColorManager.secondaryColor,
                             textColor: ColorManager.primaryColor,
                           ),
-                        )
+                        ))
                     :   ClipOval(
                               child: Image.file(File(image!.path),
                                 width: 5.w,
